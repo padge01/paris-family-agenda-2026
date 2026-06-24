@@ -3,134 +3,147 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Paris with Patrick · Map + Quick Picks Mockup</title>
+<title>Paris with Patrick · Map + Flexible Picks Mockup v2</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
-:root{--bg:#fff7ea;--paper:#fffdf8;--ink:#20252a;--muted:#647079;--line:#e6d5bf;--red:#b94d40;--blue:#27536b;--gold:#b9862e;--green:#466d55;--shadow:0 18px 45px rgba(55,39,20,.12);--r:22px;--max:1180px}*{box-sizing:border-box}html,body{margin:0;overflow-x:hidden}body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#fffaf1,var(--bg));color:var(--ink);line-height:1.42}a{color:var(--blue);font-weight:800;text-underline-offset:3px}.wrap{max-width:var(--max);margin:auto;padding:18px}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:950;color:var(--red)}h1,h2,h3{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.035em;margin:0}h1{font-size:clamp(42px,7vw,78px);line-height:.92;margin:8px 0 12px}h2{font-size:clamp(30px,4.6vw,48px);line-height:1}h3{font-size:24px;line-height:1.05}.lede{font-size:clamp(17px,2.1vw,22px);color:#435058;max-width:780px;margin:0}.hero{padding:26px 0 10px}.topbar{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 10px;font-size:13px;font-weight:850;color:#47545b}.hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.board{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);gap:18px;align-items:start;margin-top:16px}.map-card{background:var(--paper);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);overflow:hidden;position:sticky;top:12px}.map-head{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:center}.map-head h2{font-size:28px}.map-head span{color:var(--muted);font-size:14px}.map{height:590px;background:#e9e0d2}.cluster-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:12px;background:#fffaf2}.cluster{border:1px solid var(--line);border-radius:16px;padding:10px;background:white}.cluster b{display:block}.cluster span{font-size:13px;color:var(--muted)}.choices{display:grid;gap:12px}.choice-panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:16px}.choice-panel h2{font-size:30px}.prompt{color:var(--muted);margin:5px 0 12px}.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card{border:1px solid var(--line);background:#fffaf3;border-radius:18px;padding:14px;text-align:left;min-height:120px;cursor:pointer;transition:.15s ease;display:flex;flex-direction:column;gap:7px}.card:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(55,39,20,.08)}.card.selected{border-color:var(--red);outline:4px solid rgba(185,77,64,.16);background:#fff5f2}.card b{font-size:17px}.card span{color:var(--muted);font-size:14px}.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}.links a{font-size:13px;border:1px solid var(--line);background:white;border-radius:999px;padding:6px 8px;text-decoration:none}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid var(--line);background:#fffaf3;border-radius:999px;padding:10px 12px;font-weight:850;cursor:pointer}.chip.selected{background:var(--blue);color:white;border-color:var(--blue)}.summary{background:#20252a;color:white;border-radius:24px;padding:16px;box-shadow:var(--shadow)}.summary h2{font-size:31px;color:white}.summary p{color:#dae2e4}.summary-line{border-top:1px solid rgba(255,255,255,.18);padding:9px 0}.summary-line:first-of-type{border-top:0}.summary-line b{display:block;color:#fff}.summary-line span{color:#dce3e6}.btn{appearance:none;border:1px solid var(--line);background:white;border-radius:999px;min-height:44px;padding:10px 14px;font-weight:900;cursor:pointer}.btn.primary{background:var(--red);border-color:var(--red);color:white}.small{font-size:13px;color:var(--muted)}.note{background:#fff3d5;border:1px solid #e2c16e;color:#5c4512;border-radius:18px;padding:12px}.leaflet-popup-content{font-family:Inter,system-ui,sans-serif}.leaflet-popup-content b{font-size:14px}.leaflet-popup-content a{font-weight:800}@media(max-width:950px){.board{grid-template-columns:1fr}.map-card{position:relative;top:auto}.map{height:430px}.duo{grid-template-columns:1fr}.cluster-list{grid-template-columns:1fr}}@media(max-width:560px){.wrap{padding:14px}h1{font-size:45px}.topbar{display:block}.map{height:360px}.map-head{display:block}.choice-panel{padding:14px}.card{min-height:0}.hero-pills .pill{width:100%;justify-content:center}}
+:root{--bg:#fff7ea;--paper:#fffdf8;--ink:#20252a;--muted:#61707a;--line:#e6d5bf;--red:#b94d40;--blue:#27536b;--gold:#b9862e;--green:#466d55;--purple:#74528d;--gray:#7b7f83;--shadow:0 18px 45px rgba(55,39,20,.12);--r:22px;--max:1240px}*{box-sizing:border-box}html,body{margin:0;overflow-x:hidden}body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#fffaf1,var(--bg));color:var(--ink);line-height:1.42}a{color:var(--blue);font-weight:850;text-underline-offset:3px}.wrap{max-width:var(--max);margin:auto;padding:18px}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:950;color:var(--red)}h1,h2,h3{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.035em;margin:0}h1{font-size:clamp(42px,7vw,78px);line-height:.92;margin:8px 0 12px}h2{font-size:clamp(29px,4.6vw,45px);line-height:1}h3{font-size:24px;line-height:1.05}.lede{font-size:clamp(17px,2.1vw,22px);color:#435058;max-width:850px;margin:0}.hero{padding:26px 0 10px}.topbar{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 10px;font-size:13px;font-weight:850;color:#47545b}.hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.board{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:18px;align-items:start;margin-top:16px}.map-card,.choices{min-width:0}.map-card{background:var(--paper);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);overflow:hidden;position:sticky;top:12px}.map-head{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:center}.map-head h2{font-size:28px}.map-head span{color:var(--muted);font-size:14px}.map{height:620px;background:#e9e0d2}.legend{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:12px;background:#fffaf2;border-top:1px solid var(--line)}.legend-item{border:1px solid var(--line);border-radius:15px;padding:9px;background:white;display:grid;grid-template-columns:18px 1fr;gap:8px;align-items:start}.dot{width:14px;height:14px;border-radius:50%;margin-top:3px;box-shadow:0 0 0 3px white,0 1px 5px rgba(0,0,0,.25)}.legend-item b{display:block;font-size:14px}.legend-item span{display:block;font-size:12.5px;color:var(--muted);margin-top:1px}.mini-note{padding:12px 14px;background:#fff6df;border-top:1px solid #e8d2a3;color:#5c4512;font-size:14px}.choices{display:grid;gap:12px}.choice-panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:16px}.choice-panel h2{font-size:30px}.prompt{color:var(--muted);margin:5px 0 12px}.duo,.trio{display:grid;grid-template-columns:1fr 1fr;gap:10px}.trio{grid-template-columns:1fr}.card{border:1px solid var(--line);background:#fffaf3;border-radius:18px;padding:14px;text-align:left;min-height:135px;cursor:pointer;transition:.15s ease;display:flex;flex-direction:column;gap:7px}.card:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(55,39,20,.08)}.card.selected{border-color:var(--red);outline:4px solid rgba(185,77,64,.16);background:#fff5f2}.card b{font-size:17px}.card span{color:var(--muted);font-size:14px}.tagline{font-size:13px;color:#4d5a62;background:white;border:1px solid var(--line);border-radius:999px;padding:6px 8px;width:max-content;max-width:100%}.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}.links a{font-size:13px;border:1px solid var(--line);background:white;border-radius:999px;padding:6px 8px;text-decoration:none}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid var(--line);background:#fffaf3;border-radius:999px;padding:10px 12px;font-weight:850;cursor:pointer}.chip.selected{background:var(--blue);color:white;border-color:var(--blue)}.summary{background:#20252a;color:white;border-radius:24px;padding:16px;box-shadow:var(--shadow)}.summary h2{font-size:31px;color:white}.summary p{color:#dae2e4}.summary-line{border-top:1px solid rgba(255,255,255,.18);padding:9px 0}.summary-line:first-of-type{border-top:0}.summary-line b{display:block;color:#fff}.summary-line span{color:#dce3e6}.btn{appearance:none;border:1px solid var(--line);background:white;border-radius:999px;min-height:44px;padding:10px 14px;font-weight:900;cursor:pointer}.btn.primary{background:var(--red);border-color:var(--red);color:white}.small{font-size:13px;color:var(--muted)}.check{background:#eef7f0;border:1px solid #c7dfce;color:#34583f;border-radius:18px;padding:12px}.warn{background:#fff3d5;border:1px solid #e2c16e;color:#5c4512;border-radius:18px;padding:12px}.leaflet-popup-content{font-family:Inter,system-ui,sans-serif}.leaflet-popup-content b{font-size:14px}.leaflet-popup-content a{font-weight:800}@media(max-width:980px){.board{grid-template-columns:1fr}.map-card{position:relative;top:auto}.map{height:460px}.duo{grid-template-columns:1fr}.legend{grid-template-columns:1fr 1fr}}@media(max-width:600px){.wrap{padding:14px}h1{font-size:45px}.topbar{display:block}.map{height:390px}.map-head{display:block}.choice-panel{padding:14px}.card{min-height:0}.hero-pills .pill{width:100%;justify-content:center}.legend{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header class="hero wrap">
-  <div class="topbar"><div><div class="eyebrow">Mockup direction · map + quick picks</div><h1>Paris with Patrick</h1><p class="lede">A simpler way to decide: see the Paris clusters on a map, then answer a few this-or-that choices. The final itinerary can be assembled from what everyone clicks.</p></div><span class="pill">June 29 – July 1</span></div>
-  <div class="hero-pills"><span class="pill">Monday: arrival afternoon</span><span class="pill">Tuesday: one real Paris day</span><span class="pill">Catholic anchor: Saint‑Nicolas‑du‑Chardonnet</span><span class="pill">Coffee & pastry included</span></div>
+  <div class="topbar"><div><div class="eyebrow">Mockup v2 · map + flexible voting</div><h1>Paris with Patrick</h1><p class="lede">Start with the map, then pick the feel of each part of the trip. The idea is not to lock us into a rigid itinerary; it is to see what everyone wants most so we can build Monday and Tuesday around that.</p></div><span class="pill">June 29 – July 1</span></div>
+  <div class="hero-pills"><span class="pill">Monday: start from Porte Maillot after the airport bus</span><span class="pill">Check‑in verified: standard arrival is 3:00pm</span><span class="pill">Tuesday: morning + later-day block</span><span class="pill">Baby-flexible by design</span></div>
 </header>
 <main class="wrap board">
   <section class="map-card" aria-label="Paris map">
-    <div class="map-head"><div><h2>Where things are</h2><span>Tap markers to see why each area matters.</span></div><a href="https://www.openstreetmap.org/#map=13/48.8587/2.3337" target="_blank" rel="noopener">Open larger map</a></div>
+    <div class="map-head"><div><h2>Paris at a glance</h2><span>Colored pins show the airport bus, apartment, Catholic stops, cafés, shopping, and photo sights.</span></div><a href="https://www.openstreetmap.org/#map=13/48.8587/2.3337" target="_blank" rel="noopener">Open larger map</a></div>
     <div id="map" class="map"></div>
-    <div class="cluster-list">
-      <div class="cluster"><b>Apartment / 10th</b><span>Mamiche, Du Pain et des Idées, easy arrival food.</span></div>
-      <div class="cluster"><b>Old Catholic Paris</b><span>Saint‑Nicolas, Notre‑Dame, Sainte‑Chapelle, St‑Étienne.</span></div>
-      <div class="cluster"><b>Rue du Bac / Saint‑Germain</b><span>Miraculous Medal Chapel, Le Bon Marché, cafés.</span></div>
-      <div class="cluster"><b>West Paris</b><span>Shopping streets, Arc, Trocadéro Eiffel view.</span></div>
+    <div class="legend">
+      <div class="legend-item"><i class="dot" style="background:var(--blue)"></i><div><b>Transit</b><span>Porte Maillot airport bus and nearby transport.</span></div></div>
+      <div class="legend-item"><i class="dot" style="background:var(--green)"></i><div><b>Apartment / base</b><span>36 Rue du Faubourg Saint‑Martin, check‑in from 3pm.</span></div></div>
+      <div class="legend-item"><i class="dot" style="background:var(--red)"></i><div><b>Catholic / old Paris</b><span>Saint‑Nicolas, Notre‑Dame, Rue du Bac, etc.</span></div></div>
+      <div class="legend-item"><i class="dot" style="background:var(--gold)"></i><div><b>Coffee & pastry</b><span>Linked café/bakery choices near the route.</span></div></div>
+      <div class="legend-item"><i class="dot" style="background:var(--purple)"></i><div><b>Shopping</b><span>Le Bon Marché, Rue Saint‑Honoré, Vendôme, Montaigne.</span></div></div>
+      <div class="legend-item"><i class="dot" style="background:var(--ink)"></i><div><b>Classic photos</b><span>Arc, Trocadéro, Eiffel view, Tuileries.</span></div></div>
     </div>
+    <div class="mini-note"><b>Map logic:</b> Monday can start from Porte Maillot instead of detouring to the apartment. Tuesday can start from the apartment, then finish with dinner before the early Wednesday departure.</div>
   </section>
   <section class="choices" aria-label="This or that choices">
+    <div class="choice-panel check">
+      <b>Airbnb packet check:</b> standard arrival time is <b>3:00pm</b> unless specially agreed. So your instinct is right: Monday should not revolve around dropping bags at the apartment first.
+    </div>
     <div class="choice-panel">
-      <h2>First, pick the feel.</h2>
-      <p class="prompt">This drives the whole day more than any single stop.</p>
+      <h2>Overall pace</h2>
+      <p class="prompt">Pick the safety setting. We can still change plans if Patrick needs a reset.</p>
       <div class="chips" data-group="pace">
-        <button class="chip" data-value="Easy with Patrick">Easy with Patrick</button>
-        <button class="chip" data-value="Balanced">Balanced</button>
-        <button class="chip" data-value="See more if everyone is up for it">See more if everyone is up for it</button>
+        <button class="chip" data-value="Easy: fewer stops, more downtime">Easy</button>
+        <button class="chip" data-value="Balanced: one strong plan with room to adjust">Balanced</button>
+        <button class="chip" data-value="Ambitious: see more if everyone is doing well">Ambitious</button>
       </div>
     </div>
     <div class="choice-panel">
-      <h2>Monday after travel</h2>
-      <p class="prompt">After Cork → Beauvais → Aerobus → apartment, what sounds right?</p>
+      <h2>Monday from the airport bus</h2>
+      <p class="prompt">We land early, take Aerobus to Porte Maillot, then we have the day before 3pm check‑in. What should that first day feel like?</p>
       <div class="duo" data-group="monday">
-        <button class="card" data-value="Keep Monday easy near the apartment"><b>Keep it easy</b><span>Bakery or café near the apartment, settle in, short walk, early dinner.</span><div class="links"><a href="https://www.mamiche.fr/" target="_blank" rel="noopener">Mamiche</a><a href="https://www.dupainetdesidees.com/" target="_blank" rel="noopener">Du Pain et des Idées</a></div></button>
-        <button class="card" data-value="Do old Catholic Paris Monday"><b>Old Catholic Paris</b><span>Saint‑Nicolas, Notre‑Dame exterior, maybe Sainte‑Chapelle or St‑Étienne if timing is good.</span><div class="links"><a href="https://laportelatine.org/lieux/chardonnet" target="_blank" rel="noopener">Saint‑Nicolas</a><a href="https://www.notredamedeparis.fr/en/visit/" target="_blank" rel="noopener">Notre‑Dame</a></div></button>
+        <button class="card" data-value="Monday: old Catholic Paris before ending at the apartment"><b>Beautiful churches + old streets</b><span>Start with the meaningful Catholic core: Saint‑Nicolas, Notre‑Dame area, maybe Sainte‑Chapelle or St‑Étienne. Finish at the apartment after check‑in.</span><em class="tagline">Best if we want Paris to feel special right away.</em><div class="links"><a href="https://laportelatine.org/lieux/chardonnet" target="_blank" rel="noopener">Saint‑Nicolas</a><a href="https://www.notredamedeparis.fr/en/visit/" target="_blank" rel="noopener">Notre‑Dame</a><a href="https://www.sainte-chapelle.fr/en/" target="_blank" rel="noopener">Sainte‑Chapelle</a></div></button>
+        <button class="card" data-value="Monday: easier arrival day near base and Canal Saint-Martin"><b>Gentler arrival + easy food</b><span>Use the first day for coffee, pastry, a pretty walk, and getting settled. Less sightseeing, less risk of everyone crashing.</span><em class="tagline">Best if travel + baby energy is the main concern.</em><div class="links"><a href="https://www.mamiche.fr/" target="_blank" rel="noopener">Mamiche</a><a href="https://www.dupainetdesidees.com/" target="_blank" rel="noopener">Du Pain et des Idées</a><a href="https://www.google.com/maps/search/?api=1&query=Canal+Saint-Martin+Paris" target="_blank" rel="noopener">Canal Saint‑Martin</a></div></button>
       </div>
     </div>
     <div class="choice-panel">
       <h2>Tuesday morning</h2>
-      <p class="prompt">Pick the strongest start to the only full Paris day.</p>
+      <p class="prompt">This is the cleanest block for one meaningful destination before lunch.</p>
       <div class="duo" data-group="morning">
-        <button class="card" data-value="Rue du Bac + Saint-Germain morning"><b>Rue du Bac + Saint‑Germain</b><span>Miraculous Medal Chapel, Le Bon Marché, Saint‑Sulpice, then a classic café.</span><div class="links"><a href="https://www.chapellenotredamedelamedaillemiraculeuse.com/langues/english/" target="_blank" rel="noopener">Rue du Bac chapel</a><a href="https://cafedeflore.fr/" target="_blank" rel="noopener">Café de Flore</a><a href="https://lesdeuxmagots.fr/" target="_blank" rel="noopener">Les Deux Magots</a></div></button>
-        <button class="card" data-value="Notre-Dame + Sainte-Chapelle fallback"><b>Notre‑Dame + Sainte‑Chapelle</b><span>Use the morning here if Monday was too tired or if we want the iconic central stop first.</span><div class="links"><a href="https://www.notredamedeparis.fr/en/visit/" target="_blank" rel="noopener">Notre‑Dame</a><a href="https://www.sainte-chapelle.fr/en/" target="_blank" rel="noopener">Sainte‑Chapelle</a></div></button>
+        <button class="card" data-value="Tuesday morning: Rue du Bac + Saint-Germain"><b>Rue du Bac + Saint‑Germain</b><span>Miraculous Medal Chapel, Le Bon Marché, Saint‑Sulpice, then a classic café or pastry stop.</span><em class="tagline">Best Catholic + café + shopping combo.</em><div class="links"><a href="https://www.chapellenotredamedelamedaillemiraculeuse.com/langues/english/" target="_blank" rel="noopener">Rue du Bac chapel</a><a href="https://www.lebonmarche.com/" target="_blank" rel="noopener">Le Bon Marché</a><a href="https://cafedeflore.fr/" target="_blank" rel="noopener">Café de Flore</a></div></button>
+        <button class="card" data-value="Tuesday morning: protect Notre-Dame/Sainte-Chapelle if Monday was easier"><b>Protect Notre‑Dame if Monday changes</b><span>If Monday turns into a soft arrival day, Tuesday morning can cover Notre‑Dame and Sainte‑Chapelle instead.</span><em class="tagline">Best fallback if travel day gets messy.</em><div class="links"><a href="https://www.notredamedeparis.fr/en/visit/" target="_blank" rel="noopener">Notre‑Dame</a><a href="https://www.sainte-chapelle.fr/en/" target="_blank" rel="noopener">Sainte‑Chapelle</a></div></button>
       </div>
     </div>
     <div class="choice-panel">
-      <h2>Tuesday afternoon</h2>
-      <p class="prompt">This is the main tradeoff: shopping streets or famous-photo route.</p>
-      <div class="duo" data-group="afternoon">
-        <button class="card" data-value="Shopping westward"><b>Shopping westward</b><span>Rue Saint‑Honoré, Rue Cambon, Place Vendôme, Avenue Montaigne, maybe Champs / Arc.</span><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Rue+Saint-Honore+Rue+Cambon+Place+Vendome+Paris" target="_blank" rel="noopener">Shopping map</a><a href="https://www.lebonmarche.com/" target="_blank" rel="noopener">Le Bon Marché</a></div></button>
-        <button class="card" data-value="Arc + Eiffel photo route"><b>Arc + Eiffel photo</b><span>Arc de Triomphe and Trocadéro for the clearest classic Paris photos.</span><div class="links"><a href="https://www.paris-arc-de-triomphe.fr/en/" target="_blank" rel="noopener">Arc official site</a><a href="https://carette-paris.fr/" target="_blank" rel="noopener">Carette Trocadéro</a></div></button>
+      <h2>Tuesday later day</h2>
+      <p class="prompt">After the morning block, pick the vibe for the afternoon/evening before dinner.</p>
+      <div class="trio" data-group="later">
+        <button class="card" data-value="Tuesday later: shopping and pretty streets"><b>Shopping + pretty streets</b><span>Rue Saint‑Honoré, Rue Cambon, Place Vendôme, Avenue Montaigne. More Allison/Laura-friendly, still very Paris.</span><em class="tagline">Best if boutiques and walking beautiful streets matter most.</em><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Rue+Saint-Honore+Rue+Cambon+Place+Vendome+Paris" target="_blank" rel="noopener">Shopping map</a><a href="https://www.google.com/maps/search/?api=1&query=Avenue+Montaigne+Paris" target="_blank" rel="noopener">Avenue Montaigne</a></div></button>
+        <button class="card" data-value="Tuesday later: Arc + Eiffel photo finish"><b>Classic photo finish</b><span>Arc de Triomphe and Trocadéro for the Eiffel view. Easy to understand, more movement, strong photo payoff.</span><em class="tagline">Best if everyone wants iconic Paris pictures.</em><div class="links"><a href="https://www.paris-arc-de-triomphe.fr/en/" target="_blank" rel="noopener">Arc</a><a href="https://carette-paris.fr/" target="_blank" rel="noopener">Carette Trocadéro</a></div></button>
+        <button class="card" data-value="Tuesday later: Sacré-Cœur/Montmartre only if energy is good"><b>Montmartre view if energy is good</b><span>Sacré‑Cœur and Montmartre are beautiful, but hillier and better as a swap, not an extra demand.</span><em class="tagline">Best as optional, not mandatory.</em><div class="links"><a href="https://www.sacre-coeur-montmartre.com/en/" target="_blank" rel="noopener">Sacré‑Cœur</a><a href="https://www.google.com/maps/search/?api=1&query=Montmartre+Paris" target="_blank" rel="noopener">Montmartre map</a></div></button>
       </div>
     </div>
     <div class="choice-panel">
-      <h2>Coffee & pastry</h2>
-      <p class="prompt">Choose the kind of stop, not seven equal restaurant cards.</p>
-      <div class="chips" data-group="pastry">
-        <button class="chip" data-value="Near-apartment bakery: Mamiche or Du Pain et des Idées">Near apartment</button>
-        <button class="chip" data-value="Classic Saint-Germain café: Café de Flore or Les Deux Magots">Classic Saint‑Germain café</button>
-        <button class="chip" data-value="Angelina near Tuileries">Angelina</button>
-        <button class="chip" data-value="Carette if we go to Trocadéro">Carette if Eiffel photo</button>
+      <h2>Coffee, pastry, dinner</h2>
+      <p class="prompt">These choices show what people actually want, without making them research every name first.</p>
+      <div class="chips" data-group="food">
+        <button class="chip" data-value="Easy bakery near apartment: Mamiche / Du Pain et des Idées">Easy bakery near apartment</button>
+        <button class="chip" data-value="Classic Saint-Germain café: Café de Flore / Les Deux Magots">Classic Saint‑Germain café</button>
+        <button class="chip" data-value="Elegant pastry/hot chocolate: Angelina">Elegant pastry / hot chocolate</button>
+        <button class="chip" data-value="Eiffel-view café: Carette if near Trocadéro">Eiffel-view café</button>
+        <button class="chip" data-value="Dinner near apartment for easy return">Dinner near apartment</button>
+        <button class="chip" data-value="Dinner where the afternoon ends">Dinner where the day ends</button>
       </div>
       <p class="small" style="margin-bottom:0"><a href="https://www.mamiche.fr/" target="_blank" rel="noopener">Mamiche</a> · <a href="https://www.dupainetdesidees.com/" target="_blank" rel="noopener">Du Pain et des Idées</a> · <a href="https://cafedeflore.fr/" target="_blank" rel="noopener">Café de Flore</a> · <a href="https://lesdeuxmagots.fr/" target="_blank" rel="noopener">Les Deux Magots</a> · <a href="https://www.angelina-paris.fr/" target="_blank" rel="noopener">Angelina</a> · <a href="https://carette-paris.fr/" target="_blank" rel="noopener">Carette</a></p>
     </div>
-    <div class="choice-panel">
-      <h2>Optional Catholic add-ons</h2>
-      <p class="prompt">These are not all equal. Saint‑Nicolas, Notre‑Dame, and Rue du Bac are the real priorities from the planning notes.</p>
-      <div class="chips multi" data-group="addons">
-        <button class="chip" data-value="Saint-Nicolas-du-Chardonnet">Saint‑Nicolas</button>
-        <button class="chip" data-value="Notre-Dame">Notre‑Dame</button>
-        <button class="chip" data-value="Rue du Bac chapel">Rue du Bac</button>
-        <button class="chip" data-value="Sainte-Chapelle">Sainte‑Chapelle</button>
-        <button class="chip" data-value="St-Étienne-du-Mont">St‑Étienne</button>
-        <button class="chip" data-value="Saint-Sulpice">Saint‑Sulpice</button>
-        <button class="chip" data-value="Sacré-Cœur / Montmartre">Sacré‑Cœur if easy</button>
-      </div>
+    <div class="choice-panel warn">
+      <b>Baby-flex fallback:</b> every block needs an easy exit. If Patrick needs downtime, the answer should be “drop the optional stop,” not “force the whole list.”
     </div>
     <div class="summary">
-      <h2>What this would collect</h2>
-      <p>This is the cleaner decision model: live clicks become preferences. Final version can save these to a sheet or database instead of copying text.</p>
+      <h2>Live preference summary</h2>
+      <p>Final version should save this directly to a sheet/database after each person clicks submit. No copy-to-chat.</p>
       <div class="summary-line"><b>Pace</b><span id="sum-pace">Not chosen yet</span></div>
       <div class="summary-line"><b>Monday</b><span id="sum-monday">Not chosen yet</span></div>
       <div class="summary-line"><b>Tuesday morning</b><span id="sum-morning">Not chosen yet</span></div>
-      <div class="summary-line"><b>Tuesday afternoon</b><span id="sum-afternoon">Not chosen yet</span></div>
-      <div class="summary-line"><b>Coffee & pastry</b><span id="sum-pastry">Not chosen yet</span></div>
-      <div class="summary-line"><b>Catholic priorities</b><span id="sum-addons">None selected yet</span></div>
-      <button class="btn primary" type="button" onclick="fakeSubmit()">Mock submit</button> <button class="btn" type="button" onclick="resetAll()">Clear</button>
-      <p id="submitted" style="display:none;color:#fff;margin:12px 0 0">Mock submitted. Final version would save this live.</p>
+      <div class="summary-line"><b>Tuesday later day</b><span id="sum-later">Not chosen yet</span></div>
+      <div class="summary-line"><b>Food / dinner</b><span id="sum-food">Not chosen yet</span></div>
+      <button class="btn primary" type="button" onclick="fakeSubmit()">Mock live submit</button> <button class="btn" type="button" onclick="resetAll()">Clear</button>
+      <p id="submitted" style="display:none;color:#fff;margin:12px 0 0">Mock submitted. Final version would save this live for you to review.</p>
     </div>
   </section>
 </main>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const state={pace:'',monday:'',morning:'',afternoon:'',pastry:'',addons:[]};
+const state={pace:'',monday:'',morning:'',later:'',food:[]};
+const colors={transit:'#27536b',base:'#466d55',catholic:'#b94d40',food:'#b9862e',shopping:'#74528d',sight:'#20252a',optional:'#7b7f83'};
 const points=[
-  {name:'Apartment',lat:48.8701,lng:2.3572,type:'base',html:'<b>Apartment / 10th</b><br>Easy base for <a href="https://www.mamiche.fr/" target="_blank">Mamiche</a> and <a href="https://www.dupainetdesidees.com/" target="_blank">Du Pain et des Idées</a>.'},
-  {name:'Saint-Nicolas-du-Chardonnet',lat:48.8493,lng:2.3496,type:'catholic',html:'<b>Saint‑Nicolas‑du‑Chardonnet</b><br>SSPX anchor from the planning notes. <a href="https://laportelatine.org/lieux/chardonnet" target="_blank">Official listing</a>'},
-  {name:'Notre-Dame',lat:48.8530,lng:2.3499,type:'catholic',html:'<b>Notre‑Dame</b><br>Must-see Catholic / old Paris stop. <a href="https://www.notredamedeparis.fr/en/visit/" target="_blank">Official visit info</a>'},
-  {name:'Sainte-Chapelle',lat:48.8554,lng:2.3450,type:'catholic',html:'<b>Sainte‑Chapelle</b><br>Stained glass; worth it if timing works. <a href="https://www.sainte-chapelle.fr/en/" target="_blank">Official site</a>'},
-  {name:'Rue du Bac chapel',lat:48.8509,lng:2.3249,type:'catholic',html:'<b>Rue du Bac chapel</b><br>Miraculous Medal Chapel, strongly recommended. <a href="https://www.chapellenotredamedelamedaillemiraculeuse.com/langues/english/" target="_blank">Official site</a>'},
-  {name:'Le Bon Marché',lat:48.8506,lng:2.3245,type:'shopping',html:'<b>Le Bon Marché</b><br>Pairs naturally with Rue du Bac. <a href="https://www.lebonmarche.com/" target="_blank">Website</a>'},
-  {name:'Café de Flore / Les Deux Magots',lat:48.8541,lng:2.3328,type:'food',html:'<b>Classic Saint‑Germain cafés</b><br><a href="https://cafedeflore.fr/" target="_blank">Café de Flore</a> / <a href="https://lesdeuxmagots.fr/" target="_blank">Les Deux Magots</a>'},
-  {name:'Rue Saint-Honoré / Vendôme',lat:48.8676,lng:2.3294,type:'shopping',html:'<b>Shopping streets</b><br>Rue Saint‑Honoré, Rue Cambon, Place Vendôme.'},
-  {name:'Arc de Triomphe',lat:48.8738,lng:2.2950,type:'sight',html:'<b>Arc de Triomphe</b><br>Classic Paris photo route. <a href="https://www.paris-arc-de-triomphe.fr/en/" target="_blank">Official site</a>'},
-  {name:'Trocadéro / Carette',lat:48.8629,lng:2.2876,type:'sight',html:'<b>Trocadéro</b><br>Eiffel view plus <a href="https://carette-paris.fr/" target="_blank">Carette</a> nearby.'}
+{name:'Porte Maillot airport bus',lat:48.8774,lng:2.2823,type:'transit',html:'<b>Porte Maillot</b><br>A01 Aerobus station for Beauvais. Monday starts here after the airport bus; Wednesday returns here early. <a href="https://www.google.com/maps/search/?api=1&query=22-24+Boulevard+Pershing+75017+Paris" target="_blank">Map</a>'},
+{name:'Apartment',lat:48.8701,lng:2.3572,type:'base',html:'<b>Apartment / 10th</b><br>36 Rue du Faubourg Saint‑Martin. Check‑in packet says standard arrival is 3:00pm.'},
+{name:'Château d’Eau metro',lat:48.8725,lng:2.3561,type:'transit',html:'<b>Château d’Eau</b><br>Closest metro station listed in the apartment packet.'},
+{name:'Gare de l’Est',lat:48.8767,lng:2.3591,type:'transit',html:'<b>Gare de l’Est</b><br>Nearby major station / landmark by the apartment.'},
+{name:'Mamiche',lat:48.8718,lng:2.3547,type:'food',html:'<b>Mamiche</b><br>Easy bakery near the apartment. <a href="https://www.mamiche.fr/" target="_blank">Website</a>'},
+{name:'Du Pain et des Idées',lat:48.8711,lng:2.3628,type:'food',html:'<b>Du Pain et des Idées</b><br>Classic bakery near Canal Saint‑Martin. <a href="https://www.dupainetdesidees.com/" target="_blank">Website</a>'},
+{name:'Saint-Nicolas-du-Chardonnet',lat:48.8493,lng:2.3496,type:'catholic',html:'<b>Saint‑Nicolas‑du‑Chardonnet</b><br>SSPX anchor from the planning notes. <a href="https://laportelatine.org/lieux/chardonnet" target="_blank">Official listing</a>'},
+{name:'Notre-Dame',lat:48.8530,lng:2.3499,type:'catholic',html:'<b>Notre‑Dame</b><br>Must-see Catholic / old Paris stop. <a href="https://www.notredamedeparis.fr/en/visit/" target="_blank">Official visit info</a>'},
+{name:'Sainte-Chapelle',lat:48.8554,lng:2.3450,type:'catholic',html:'<b>Sainte‑Chapelle</b><br>Stained glass; worth it if timing works. <a href="https://www.sainte-chapelle.fr/en/" target="_blank">Official site</a>'},
+{name:'St-Étienne-du-Mont',lat:48.8463,lng:2.3480,type:'catholic',html:'<b>St‑Étienne‑du‑Mont</b><br>Near Saint‑Nicolas; shrine of St. Geneviève.'},
+{name:'Rue du Bac chapel',lat:48.8509,lng:2.3249,type:'catholic',html:'<b>Rue du Bac chapel</b><br>Miraculous Medal Chapel, strongly recommended. <a href="https://www.chapellenotredamedelamedaillemiraculeuse.com/langues/english/" target="_blank">Official site</a>'},
+{name:'Saint-Sulpice',lat:48.8510,lng:2.3346,type:'catholic',html:'<b>Saint‑Sulpice</b><br>Easy add-on with Rue du Bac / Saint‑Germain.'},
+{name:'Le Bon Marché',lat:48.8506,lng:2.3245,type:'shopping',html:'<b>Le Bon Marché</b><br>Pairs naturally with Rue du Bac. <a href="https://www.lebonmarche.com/" target="_blank">Website</a>'},
+{name:'Café de Flore',lat:48.8541,lng:2.3328,type:'food',html:'<b>Café de Flore</b><br>Classic Saint‑Germain café. <a href="https://cafedeflore.fr/" target="_blank">Website</a>'},
+{name:'Les Deux Magots',lat:48.8542,lng:2.3332,type:'food',html:'<b>Les Deux Magots</b><br>Classic Saint‑Germain café. <a href="https://lesdeuxmagots.fr/" target="_blank">Website</a>'},
+{name:'Maison Mulot',lat:48.8506,lng:2.3358,type:'food',html:'<b>Maison Mulot</b><br>Pastry near Saint‑Germain / Saint‑Sulpice. <a href="https://www.maison-mulot.com/" target="_blank">Website</a>'},
+{name:'Tuileries / Angelina',lat:48.8638,lng:2.3270,type:'food',html:'<b>Angelina / Tuileries</b><br>Classic hot chocolate and pastry near Tuileries. <a href="https://www.angelina-paris.fr/" target="_blank">Angelina</a>'},
+{name:'Rue Saint-Honoré / Vendôme',lat:48.8676,lng:2.3294,type:'shopping',html:'<b>Rue Saint‑Honoré / Vendôme</b><br>Luxury shopping streets, Rue Cambon, Place Vendôme.'},
+{name:'Avenue Montaigne',lat:48.8666,lng:2.3049,type:'shopping',html:'<b>Avenue Montaigne</b><br>West-side luxury shopping; pairs with Champs / Arc.'},
+{name:'Arc de Triomphe',lat:48.8738,lng:2.2950,type:'sight',html:'<b>Arc de Triomphe</b><br>Classic Paris photo route. <a href="https://www.paris-arc-de-triomphe.fr/en/" target="_blank">Official site</a>'},
+{name:'Trocadéro / Carette',lat:48.8629,lng:2.2876,type:'sight',html:'<b>Trocadéro</b><br>Eiffel view plus <a href="https://carette-paris.fr/" target="_blank">Carette</a> nearby.'},
+{name:'Sacré-Cœur / Montmartre',lat:48.8867,lng:2.3431,type:'optional',html:'<b>Sacré‑Cœur / Montmartre</b><br>Beautiful view, but hillier. Best as a swap if energy is good. <a href="https://www.sacre-coeur-montmartre.com/en/" target="_blank">Official site</a>'}
 ];
-let map, markers=[];
+let map;
 function initMap(){
-  if(!window.L){document.getElementById('map').innerHTML='<div style="padding:18px">Map tiles did not load. Use the Open larger map link above.</div>';return;}
-  map=L.map('map',{scrollWheelZoom:false}).setView([48.8587,2.3337],13);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
-  points.forEach(p=>{const color=p.type==='catholic'?'#b94d40':p.type==='food'?'#b9862e':p.type==='shopping'?'#27536b':p.type==='base'?'#466d55':'#20252a';const icon=L.divIcon({className:'',html:`<div style="width:18px;height:18px;border-radius:50%;background:${color};border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,.35)"></div>`,iconSize:[18,18],iconAnchor:[9,9]});const m=L.marker([p.lat,p.lng],{icon}).bindPopup(p.html).addTo(map);markers.push({name:p.name,marker:m,type:p.type});});
+ if(!window.L){document.getElementById('map').innerHTML='<div style="padding:18px">Map tiles did not load. Use the Open larger map link above.</div>';return;}
+ map=L.map('map',{scrollWheelZoom:false}).setView([48.8625,2.3265],13);
+ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
+ points.forEach(p=>{const color=colors[p.type];const icon=L.divIcon({className:'',html:`<div title="${p.name}" style="width:18px;height:18px;border-radius:50%;background:${color};border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,.35)"></div>`,iconSize:[18,18],iconAnchor:[9,9]});L.marker([p.lat,p.lng],{icon}).bindPopup(p.html).addTo(map);});
+ L.polyline([[48.8774,2.2823],[48.8493,2.3496],[48.8530,2.3499],[48.8701,2.3572]],{color:colors.red,weight:3,opacity:.55,dashArray:'6 8'}).addTo(map).bindPopup('Possible Monday old Catholic Paris path: Porte Maillot → Saint‑Nicolas / Notre‑Dame → apartment.');
+ L.polyline([[48.8701,2.3572],[48.8509,2.3249],[48.8541,2.3328],[48.8676,2.3294],[48.8738,2.2950]],{color:colors.purple,weight:3,opacity:.55,dashArray:'6 8'}).addTo(map).bindPopup('Possible Tuesday shape: apartment → Rue du Bac / Saint‑Germain → shopping / Arc.');
 }
 function selectInGroup(group,value,el){
-  if(group==='addons'){
-    const i=state.addons.indexOf(value); if(i>=0) state.addons.splice(i,1); else state.addons.push(value); el.classList.toggle('selected');
-  } else {
-    state[group]=value; document.querySelectorAll(`[data-group="${group}"] .card,[data-group="${group}"] .chip`).forEach(x=>x.classList.remove('selected')); el.classList.add('selected');
-  }
-  render();
+ if(group==='food'){
+  const i=state.food.indexOf(value); if(i>=0) state.food.splice(i,1); else state.food.push(value); el.classList.toggle('selected');
+ } else {
+  state[group]=value; document.querySelectorAll(`[data-group="${group}"] .card,[data-group="${group}"] .chip`).forEach(x=>x.classList.remove('selected')); el.classList.add('selected');
+ }
+ render();
 }
 document.querySelectorAll('[data-group] .card,[data-group] .chip').forEach(el=>el.addEventListener('click',e=>{if(e.target.tagName==='A') return; selectInGroup(el.closest('[data-group]').dataset.group, el.dataset.value, el);}));
-function render(){['pace','monday','morning','afternoon','pastry'].forEach(k=>document.getElementById('sum-'+k).textContent=state[k]||'Not chosen yet');document.getElementById('sum-addons').textContent=state.addons.length?state.addons.join(', '):'None selected yet';document.getElementById('submitted').style.display='none';}
+function render(){['pace','monday','morning','later'].forEach(k=>document.getElementById('sum-'+k).textContent=state[k]||'Not chosen yet');document.getElementById('sum-food').textContent=state.food.length?state.food.join('; '):'Not chosen yet';document.getElementById('submitted').style.display='none';}
 function fakeSubmit(){document.getElementById('submitted').style.display='block';}
-function resetAll(){state.pace=state.monday=state.morning=state.afternoon=state.pastry='';state.addons=[];document.querySelectorAll('.selected').forEach(x=>x.classList.remove('selected'));render();}
+function resetAll(){state.pace=state.monday=state.morning=state.later='';state.food=[];document.querySelectorAll('.selected').forEach(x=>x.classList.remove('selected'));render();}
 initMap();render();
 </script>
 </body>
