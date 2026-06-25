@@ -4,154 +4,55 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Paris with Patrick · Skeleton Review</title>
 <style>
-:root{--cream:#fff7ea;--paper:#fffdf8;--ink:#20252a;--muted:#5e6c75;--line:#e5d3bd;--red:#b94d40;--blue:#27536b}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fffaf1,var(--cream));color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}.wrap{max-width:900px;margin:auto;padding:24px 18px 60px}.notice{background:#20252a;color:white;border-radius:22px;padding:16px 18px;margin:0 0 18px;box-shadow:0 12px 30px rgba(0,0,0,.12)}.notice b{display:block;font-size:18px;margin-bottom:4px}.notice span{color:#dce3e6}h1,h2,h3{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.03em}h1{font-size:clamp(38px,7vw,64px);line-height:.95;margin:10px 0 16px}h2{font-size:32px;margin:34px 0 8px;border-top:1px solid var(--line);padding-top:20px}h3{font-size:24px;margin:20px 0 6px}p,li{font-size:17px}p{margin:8px 0;color:#34424a}ul{margin:8px 0 12px;padding-left:22px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding-top:12px;padding-bottom:12px;box-shadow:0 4px 14px rgba(55,39,20,.05)}li{margin:5px 0;color:#34424a}.numbered{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 12px}code{background:#fff;border:1px solid var(--line);border-radius:6px;padding:2px 5px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:10px 14px;text-decoration:none;font-weight:900;border:1px solid var(--line);background:white;color:var(--blue)}.btn.primary{background:var(--red);border-color:var(--red);color:white}
+:root{--cream:#fff7ea;--paper:#fffdf8;--ink:#20252a;--muted:#5e6c75;--line:#e5d3bd;--red:#b94d40;--blue:#27536b;--green:#466d55;--gold:#b9862e;--shadow:0 14px 34px rgba(55,39,20,.11)}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fffaf1,var(--cream));color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}.wrap{max-width:980px;margin:auto;padding:22px 16px 60px}.notice{background:#20252a;color:white;border-radius:22px;padding:16px 18px;margin:0 0 18px;box-shadow:var(--shadow)}.notice b{display:block;font-size:18px;margin-bottom:4px}.notice span{color:#dce3e6}h1,h2,h3{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.03em}h1{font-size:clamp(39px,7vw,66px);line-height:.95;margin:10px 0 16px}h2{font-size:32px;margin:34px 0 10px;border-top:1px solid var(--line);padding-top:22px}h3{font-size:24px;margin:0 0 8px}p,li{font-size:17px}p{margin:8px 0;color:#34424a}ul{margin:8px 0 0;padding-left:22px}li{margin:5px 0;color:#34424a}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:10px 14px;text-decoration:none;font-weight:900;border:1px solid var(--line);background:white;color:var(--blue)}.btn.primary{background:var(--red);border-color:var(--red);color:white}.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:15px 17px;margin:12px 0;box-shadow:0 5px 18px rgba(55,39,20,.06)}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.tag{display:inline-flex;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 10px;margin:4px 5px 4px 0;font-weight:850;color:#43515a}.cut{border-left:5px solid var(--red)}.keep{border-left:5px solid var(--green)}.submit{border-left:5px solid var(--blue)}.food{border-left:5px solid var(--gold)}.small{font-size:14px;color:var(--muted)}strong{color:var(--ink)}@media(max-width:700px){.grid{grid-template-columns:1fr}.wrap{padding:16px 13px 50px}}
 </style>
-</head><body><main class="wrap">
-<div class="notice"><b>Review scope: structure only</b><span>This is not the designed page. It is the proposed skeleton so you can approve/cut/reorder before I touch the actual mockup.</span></div>
-<div class="actions"><a class="btn primary" href="../mockup/">Back to current mockup</a><a class="btn" href="https://padge01.github.io/paris-family-agenda-2026/">Current main page</a></div>
-<h1>Paris with Patrick — Piece 1 UX skeleton</h1>
-<h2>Goal</h2>
-<p>Build a family-facing decision page, not an itinerary worksheet.</p>
-<p>The page should help Allison/Laura understand the geography and then click simple preferences. Padraig/Forge can assemble the final itinerary from those preferences.</p>
+</head>
+<body><main class="wrap">
+<div class="notice"><b>Review scope: updated structure only</b><span>I removed the abstract intensity model and killed copy-to-chat as a final mechanism. This is still the skeleton, not the designed page.</span></div>
+<div class="actions"><a class="btn primary" href="../mockup/">Back to current mockup</a><a class="btn" href="../">Current main page</a></div>
+<h1>Paris with Patrick — UX skeleton</h1>
+<div class="card"><h3>Goal</h3><p>Build a family-facing decision page, not an itinerary worksheet. The page should help Allison/Laura understand the geography and pick the experiences they actually want.</p></div>
+
 <h2>Core decision model</h2>
-<p>The family should answer:</p>
-<p class="numbered"><strong>1. How hard should we push the trip?</strong></p>
-<p class="numbered"><strong>2. What should Monday feel like after the airport bus?</strong></p>
-<p class="numbered"><strong>3. What should Tuesday morning prioritize?</strong></p>
-<p class="numbered"><strong>4. What should Tuesday afternoon/evening prioritize?</strong></p>
-<p class="numbered"><strong>5. What food/café experience sounds best?</strong></p>
-<p>The family should NOT have to choose between rigid package plans.</p>
-<h2>Proposed final page structure</h2>
-<h3>1. Hero / orientation</h3>
-<p>Purpose: explain the trip in one screen.</p>
-<p>Content:</p>
-<ul>
-<li>Paris with Patrick</li>
-<li>One arrival afternoon + one full Paris day</li>
-<li>Monday starts after the Beauvais → Porte Maillot airport bus</li>
-<li>Airbnb check-in is normally 3:00pm</li>
-<li>Tuesday is the main Paris day</li>
-<li>Wednesday is airport morning</li>
-</ul>
-<p>Tone:</p>
-<ul>
-<li>warm</li>
-<li>simple</li>
-<li>no mockup/meta language</li>
-<li>no planning jargon</li>
-</ul>
-<h3>2. Map-first overview</h3>
-<p>Purpose: make Paris intuitive before asking for choices.</p>
-<p>Map should show:</p>
-<ul>
-<li>Porte Maillot / A01 airport bus</li>
-<li>apartment at 36 Rue du Faubourg Saint-Martin</li>
-<li>Old Catholic Paris cluster: Saint-Nicolas, Notre-Dame, Sainte-Chapelle, St-Etienne</li>
-<li>Rue du Bac / Saint-Germain cluster: Miraculous Medal Chapel, Saint-Sulpice, Le Bon Marche, classic cafés</li>
-<li>West Paris cluster: shopping streets, Arc, Trocadero / Eiffel view</li>
-<li>Optional: Sacre-Coeur / Montmartre</li>
-</ul>
-<p>Legend groups:</p>
-<ul>
-<li>Transit</li>
-<li>Apartment / base</li>
-<li>Catholic / old Paris</li>
-<li>Coffee &amp; pastry</li>
-<li>Shopping</li>
-<li>Classic photos</li>
-<li>Optional</li>
-</ul>
-<h3>3. Overall pace</h3>
-<p>Choices:</p>
-<ul>
-<li>Easy</li>
-<li>Balanced</li>
-<li>Ambitious</li>
-</ul>
-<p>This should be the first click because it controls everything else.</p>
-<h3>4. Monday after airport bus</h3>
-<p>Choices:</p>
-<ul>
-<li>Old Catholic Paris</li>
-</ul>
-<p>  - Saint-Nicolas, Notre-Dame area, maybe Sainte-Chapelle or St-Etienne, then apartment after check-in.</p>
-<ul>
-<li>Gentle arrival</li>
-</ul>
-<p>  - pastry/coffee, easy walk, settle in, early dinner.</p>
-<p>This must reflect that we do not need to drop bags at the Airbnb first and check-in is not until 3pm.</p>
-<h3>5. Tuesday morning</h3>
-<p>Choices:</p>
-<ul>
-<li>Rue du Bac + Saint-Germain</li>
-</ul>
-<p>  - Miraculous Medal Chapel, Le Bon Marche, Saint-Sulpice, café/pastry.</p>
-<ul>
-<li>Notre-Dame / Sainte-Chapelle fallback</li>
-</ul>
-<p>  - protects central Catholic Paris if Monday becomes too tired.</p>
-<h3>6. Tuesday later day</h3>
-<p>Choices:</p>
-<ul>
-<li>Shopping + pretty streets</li>
-</ul>
-<p>  - Rue Saint-Honore, Rue Cambon, Place Vendome, Avenue Montaigne.</p>
-<ul>
-<li>Classic photo finish</li>
-</ul>
-<p>  - Arc de Triomphe, Trocadero / Eiffel view.</p>
-<ul>
-<li>Montmartre only if energy is good</li>
-</ul>
-<p>  - Sacre-Coeur / Montmartre as a swap, not an add-on.</p>
-<h3>7. Food / café / dinner preferences</h3>
-<p>Choices should be by experience, not a restaurant database:</p>
-<ul>
-<li>Easy bakery near apartment: Mamiche / Du Pain et des Idees</li>
-<li>Classic Saint-Germain café: Café de Flore / Les Deux Magots</li>
-<li>Elegant pastry / hot chocolate: Angelina</li>
-<li>Eiffel-view café: Carette if Trocadero route</li>
-<li>Dinner near apartment</li>
-<li>Dinner where the day ends</li>
-</ul>
-<p>Rule: every food place name must be linked at the point it appears.</p>
-<h3>8. Live preference summary + submit</h3>
-<p>Purpose: collect clicks without copy-to-chat.</p>
-<p>Final version should use a real submit mechanism:</p>
-<ul>
-<li>Tally / Google Form for lowest risk</li>
-<li>Google Apps Script to Sheet for custom but simple</li>
-<li>Supabase for fully live app-like voting</li>
-</ul>
-<p>Do not implement final submit until UX is approved.</p>
-<h2>What to cut from prior versions</h2>
-<p>Cut:</p>
-<ul>
-<li>Plan A / B / C / D package voting</li>
-<li>dense “customize the plan” grid</li>
-<li>heart buttons on every place</li>
-<li>long place encyclopedia</li>
-<li>copy-to-chat as final mechanism</li>
-<li>internal/meta language like mockup, planning model, anchor, direction, shape, role</li>
-</ul>
-<p>Keep:</p>
-<ul>
-<li>map</li>
-<li>simple choice cards</li>
-<li>visible Saint-Nicolas / SSPX anchor</li>
-<li>Rue du Bac / Notre-Dame / Sainte-Chapelle prework</li>
-<li>food links where referenced</li>
-<li>baby-flex framing</li>
-<li>check-in and airport constraints</li>
-</ul>
-<h2>Success criteria for the finished page</h2>
-<p>A family member should understand within 20 seconds:</p>
-<ul>
-<li>where the airport bus, apartment, Catholic stops, cafés, shopping, and photo stops are</li>
-<li>that Monday is flexible because check-in is 3pm</li>
-<li>that Tuesday is the main Paris day</li>
-<li>what they are supposed to click</li>
-<li>that they are giving preferences, not locking in a rigid itinerary</li>
-</ul>
+<div class="grid">
+  <div class="card"><h3>1. Experience priorities</h3><p>Which Paris experiences matter most?</p></div>
+  <div class="card"><h3>2. Monday after bus</h3><p>What should Monday feel like after Beauvais → Porte Maillot?</p></div>
+  <div class="card"><h3>3. Tuesday morning</h3><p>What should the main morning prioritize?</p></div>
+  <div class="card"><h3>4. Tuesday later day</h3><p>What should the afternoon/evening prioritize?</p></div>
+  <div class="card food"><h3>5. Food / café / dinner</h3><p>What food experience sounds best?</p></div>
+  <div class="card submit"><h3>6. Submit in page</h3><p>Name + clicks + Submit. No copy-to-chat.</p></div>
+</div>
+<p><strong>Removed:</strong> Easy / Balanced / Ambitious as the primary model. They are picking experiences, not intensity.</p>
+
+<h2>1. Hero / orientation</h2>
+<div class="card"><p>One-screen explanation:</p><ul><li>Paris with Patrick</li><li>One arrival afternoon + one full Paris day</li><li>Monday starts after the Beauvais → Porte Maillot airport bus</li><li>Airbnb check-in is normally 3:00pm</li><li>Tuesday is the main Paris day</li><li>Wednesday is airport morning</li></ul></div>
+
+<h2>2. Map-first overview</h2>
+<div class="card"><p>Map should make the geography intuitive before asking for choices.</p><ul><li>Porte Maillot / A01 airport bus</li><li>Apartment at 36 Rue du Faubourg Saint-Martin</li><li>Old Catholic Paris: Saint-Nicolas, Notre-Dame, Sainte-Chapelle, St-Etienne</li><li>Rue du Bac / Saint-Germain: Miraculous Medal Chapel, Saint-Sulpice, Le Bon Marche, classic cafés</li><li>West Paris: shopping streets, Arc, Trocadero / Eiffel view</li><li>Optional: Sacre-Coeur / Montmartre</li></ul></div>
+
+<h2>3. Experience priorities</h2>
+<div class="card"><p>Multi-select experience chips:</p><span class="tag">Old Catholic Paris</span><span class="tag">Saint-Nicolas / SSPX chapel</span><span class="tag">Notre-Dame</span><span class="tag">Rue du Bac chapel</span><span class="tag">Classic café</span><span class="tag">Good pastries</span><span class="tag">Shopping / pretty streets</span><span class="tag">Arc / Eiffel photo</span><span class="tag">Keep it easy with Patrick</span></div>
+
+<h2>4. Monday after airport bus</h2>
+<div class="grid"><div class="card"><h3>Old Catholic Paris</h3><p>Saint-Nicolas, Notre-Dame area, maybe Sainte-Chapelle or St-Etienne, then apartment after check-in.</p></div><div class="card"><h3>Gentle arrival</h3><p>Pastry/coffee, easy walk, settle in, early dinner.</p></div></div>
+<p class="small">Must reflect: no need to drop bags at Airbnb first; standard check-in is 3:00pm.</p>
+
+<h2>5. Tuesday morning</h2>
+<div class="grid"><div class="card"><h3>Rue du Bac + Saint-Germain</h3><p>Miraculous Medal Chapel, Le Bon Marche, Saint-Sulpice, café/pastry.</p></div><div class="card"><h3>Notre-Dame / Sainte-Chapelle fallback</h3><p>Protects central Catholic Paris if Monday becomes too tired.</p></div></div>
+
+<h2>6. Tuesday later day</h2>
+<div class="grid"><div class="card"><h3>Shopping + pretty streets</h3><p>Rue Saint-Honore, Rue Cambon, Place Vendome, Avenue Montaigne.</p></div><div class="card"><h3>Classic photo finish</h3><p>Arc de Triomphe, Trocadero / Eiffel view.</p></div><div class="card"><h3>Montmartre only if energy is good</h3><p>Sacre-Coeur / Montmartre as a swap, not an add-on.</p></div></div>
+
+<h2>7. Food / café / dinner preferences</h2>
+<div class="card food"><p>Choices by experience, not a restaurant database:</p><ul><li>Easy bakery near apartment: Mamiche / Du Pain et des Idees</li><li>Classic Saint-Germain café: Café de Flore / Les Deux Magots</li><li>Elegant pastry / hot chocolate: Angelina</li><li>Eiffel-view café: Carette if Trocadero route</li><li>Dinner near apartment</li><li>Dinner where the day ends</li></ul><p><strong>Rule:</strong> every food place name must be linked at the point it appears.</p></div>
+
+<h2>8. Seamless in-page submission</h2>
+<div class="card submit"><p>Final version must save responses from the page itself.</p><ul><li>Person enters their name</li><li>Clicks choices</li><li>Taps Submit</li><li>Page confirms response was saved</li><li>Padraig can review responses in one place</li><li>No copy-to-chat as final mechanism</li></ul><p>Likely implementation: Google Apps Script to Sheet for custom page + simple storage, or Tally/Google Form if low-risk matters more.</p></div>
+
+<h2>What to cut / keep</h2>
+<div class="grid"><div class="card cut"><h3>Cut</h3><ul><li>Plan A/B/C/D package voting</li><li>Easy/Balanced/Ambitious as primary model</li><li>Dense customize grid</li><li>Heart buttons on every place</li><li>Long place encyclopedia</li><li>Copy-to-chat as final mechanism</li></ul></div><div class="card keep"><h3>Keep</h3><ul><li>Map-first layout</li><li>Simple choice cards</li><li>Visible Saint-Nicolas / SSPX anchor</li><li>Rue du Bac / Notre-Dame / Sainte-Chapelle prework</li><li>Food links where referenced</li><li>Check-in and airport constraints</li><li>Seamless in-app submission</li></ul></div></div>
+
+<h2>Success criteria</h2>
+<div class="card"><p>Within 20 seconds, a family member should understand:</p><ul><li>where the airport bus, apartment, Catholic stops, cafés, shopping, and photo stops are</li><li>that Monday is flexible because check-in is 3:00pm</li><li>that Tuesday is the main Paris day</li><li>what they are supposed to click</li><li>that they are giving preferences, not locking in a rigid itinerary</li><li>that Submit saves their preferences directly on the site</li></ul></div>
 </main></body></html>
