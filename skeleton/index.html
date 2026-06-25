@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paris with Patrick · Skeleton Review</title>
+<style>
+:root{--cream:#fff7ea;--paper:#fffdf8;--ink:#20252a;--muted:#5e6c75;--line:#e5d3bd;--red:#b94d40;--blue:#27536b}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fffaf1,var(--cream));color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}.wrap{max-width:900px;margin:auto;padding:24px 18px 60px}.notice{background:#20252a;color:white;border-radius:22px;padding:16px 18px;margin:0 0 18px;box-shadow:0 12px 30px rgba(0,0,0,.12)}.notice b{display:block;font-size:18px;margin-bottom:4px}.notice span{color:#dce3e6}h1,h2,h3{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.03em}h1{font-size:clamp(38px,7vw,64px);line-height:.95;margin:10px 0 16px}h2{font-size:32px;margin:34px 0 8px;border-top:1px solid var(--line);padding-top:20px}h3{font-size:24px;margin:20px 0 6px}p,li{font-size:17px}p{margin:8px 0;color:#34424a}ul{margin:8px 0 12px;padding-left:22px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding-top:12px;padding-bottom:12px;box-shadow:0 4px 14px rgba(55,39,20,.05)}li{margin:5px 0;color:#34424a}.numbered{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 12px}code{background:#fff;border:1px solid var(--line);border-radius:6px;padding:2px 5px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:10px 14px;text-decoration:none;font-weight:900;border:1px solid var(--line);background:white;color:var(--blue)}.btn.primary{background:var(--red);border-color:var(--red);color:white}
+</style>
+</head><body><main class="wrap">
+<div class="notice"><b>Review scope: structure only</b><span>This is not the designed page. It is the proposed skeleton so you can approve/cut/reorder before I touch the actual mockup.</span></div>
+<div class="actions"><a class="btn primary" href="../mockup/">Back to current mockup</a><a class="btn" href="https://padge01.github.io/paris-family-agenda-2026/">Current main page</a></div>
+<h1>Paris with Patrick — Piece 1 UX skeleton</h1>
+<h2>Goal</h2>
+<p>Build a family-facing decision page, not an itinerary worksheet.</p>
+<p>The page should help Allison/Laura understand the geography and then click simple preferences. Padraig/Forge can assemble the final itinerary from those preferences.</p>
+<h2>Core decision model</h2>
+<p>The family should answer:</p>
+<p class="numbered"><strong>1. How hard should we push the trip?</strong></p>
+<p class="numbered"><strong>2. What should Monday feel like after the airport bus?</strong></p>
+<p class="numbered"><strong>3. What should Tuesday morning prioritize?</strong></p>
+<p class="numbered"><strong>4. What should Tuesday afternoon/evening prioritize?</strong></p>
+<p class="numbered"><strong>5. What food/café experience sounds best?</strong></p>
+<p>The family should NOT have to choose between rigid package plans.</p>
+<h2>Proposed final page structure</h2>
+<h3>1. Hero / orientation</h3>
+<p>Purpose: explain the trip in one screen.</p>
+<p>Content:</p>
+<ul>
+<li>Paris with Patrick</li>
+<li>One arrival afternoon + one full Paris day</li>
+<li>Monday starts after the Beauvais → Porte Maillot airport bus</li>
+<li>Airbnb check-in is normally 3:00pm</li>
+<li>Tuesday is the main Paris day</li>
+<li>Wednesday is airport morning</li>
+</ul>
+<p>Tone:</p>
+<ul>
+<li>warm</li>
+<li>simple</li>
+<li>no mockup/meta language</li>
+<li>no planning jargon</li>
+</ul>
+<h3>2. Map-first overview</h3>
+<p>Purpose: make Paris intuitive before asking for choices.</p>
+<p>Map should show:</p>
+<ul>
+<li>Porte Maillot / A01 airport bus</li>
+<li>apartment at 36 Rue du Faubourg Saint-Martin</li>
+<li>Old Catholic Paris cluster: Saint-Nicolas, Notre-Dame, Sainte-Chapelle, St-Etienne</li>
+<li>Rue du Bac / Saint-Germain cluster: Miraculous Medal Chapel, Saint-Sulpice, Le Bon Marche, classic cafés</li>
+<li>West Paris cluster: shopping streets, Arc, Trocadero / Eiffel view</li>
+<li>Optional: Sacre-Coeur / Montmartre</li>
+</ul>
+<p>Legend groups:</p>
+<ul>
+<li>Transit</li>
+<li>Apartment / base</li>
+<li>Catholic / old Paris</li>
+<li>Coffee &amp; pastry</li>
+<li>Shopping</li>
+<li>Classic photos</li>
+<li>Optional</li>
+</ul>
+<h3>3. Overall pace</h3>
+<p>Choices:</p>
+<ul>
+<li>Easy</li>
+<li>Balanced</li>
+<li>Ambitious</li>
+</ul>
+<p>This should be the first click because it controls everything else.</p>
+<h3>4. Monday after airport bus</h3>
+<p>Choices:</p>
+<ul>
+<li>Old Catholic Paris</li>
+</ul>
+<p>  - Saint-Nicolas, Notre-Dame area, maybe Sainte-Chapelle or St-Etienne, then apartment after check-in.</p>
+<ul>
+<li>Gentle arrival</li>
+</ul>
+<p>  - pastry/coffee, easy walk, settle in, early dinner.</p>
+<p>This must reflect that we do not need to drop bags at the Airbnb first and check-in is not until 3pm.</p>
+<h3>5. Tuesday morning</h3>
+<p>Choices:</p>
+<ul>
+<li>Rue du Bac + Saint-Germain</li>
+</ul>
+<p>  - Miraculous Medal Chapel, Le Bon Marche, Saint-Sulpice, café/pastry.</p>
+<ul>
+<li>Notre-Dame / Sainte-Chapelle fallback</li>
+</ul>
+<p>  - protects central Catholic Paris if Monday becomes too tired.</p>
+<h3>6. Tuesday later day</h3>
+<p>Choices:</p>
+<ul>
+<li>Shopping + pretty streets</li>
+</ul>
+<p>  - Rue Saint-Honore, Rue Cambon, Place Vendome, Avenue Montaigne.</p>
+<ul>
+<li>Classic photo finish</li>
+</ul>
+<p>  - Arc de Triomphe, Trocadero / Eiffel view.</p>
+<ul>
+<li>Montmartre only if energy is good</li>
+</ul>
+<p>  - Sacre-Coeur / Montmartre as a swap, not an add-on.</p>
+<h3>7. Food / café / dinner preferences</h3>
+<p>Choices should be by experience, not a restaurant database:</p>
+<ul>
+<li>Easy bakery near apartment: Mamiche / Du Pain et des Idees</li>
+<li>Classic Saint-Germain café: Café de Flore / Les Deux Magots</li>
+<li>Elegant pastry / hot chocolate: Angelina</li>
+<li>Eiffel-view café: Carette if Trocadero route</li>
+<li>Dinner near apartment</li>
+<li>Dinner where the day ends</li>
+</ul>
+<p>Rule: every food place name must be linked at the point it appears.</p>
+<h3>8. Live preference summary + submit</h3>
+<p>Purpose: collect clicks without copy-to-chat.</p>
+<p>Final version should use a real submit mechanism:</p>
+<ul>
+<li>Tally / Google Form for lowest risk</li>
+<li>Google Apps Script to Sheet for custom but simple</li>
+<li>Supabase for fully live app-like voting</li>
+</ul>
+<p>Do not implement final submit until UX is approved.</p>
+<h2>What to cut from prior versions</h2>
+<p>Cut:</p>
+<ul>
+<li>Plan A / B / C / D package voting</li>
+<li>dense “customize the plan” grid</li>
+<li>heart buttons on every place</li>
+<li>long place encyclopedia</li>
+<li>copy-to-chat as final mechanism</li>
+<li>internal/meta language like mockup, planning model, anchor, direction, shape, role</li>
+</ul>
+<p>Keep:</p>
+<ul>
+<li>map</li>
+<li>simple choice cards</li>
+<li>visible Saint-Nicolas / SSPX anchor</li>
+<li>Rue du Bac / Notre-Dame / Sainte-Chapelle prework</li>
+<li>food links where referenced</li>
+<li>baby-flex framing</li>
+<li>check-in and airport constraints</li>
+</ul>
+<h2>Success criteria for the finished page</h2>
+<p>A family member should understand within 20 seconds:</p>
+<ul>
+<li>where the airport bus, apartment, Catholic stops, cafés, shopping, and photo stops are</li>
+<li>that Monday is flexible because check-in is 3pm</li>
+<li>that Tuesday is the main Paris day</li>
+<li>what they are supposed to click</li>
+<li>that they are giving preferences, not locking in a rigid itinerary</li>
+</ul>
+</main></body></html>
