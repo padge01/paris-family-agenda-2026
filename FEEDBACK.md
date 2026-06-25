@@ -2,6 +2,8 @@
 
 ## 2026-06-25 01:40 PDT — Desktop overflow in choice cards
 
+Status: addressed during Piece 3 by forcing grid children, cards, taglines, and chips to wrap within their containers; verified no document-level horizontal overflow in desktop and mobile-width checks.
+
 Source screenshot: `/home/padraig/.hermes/profiles/forge/image_cache/img_e832c5109d15.png`
 
 User note: desktop view has serious overflow issues. Do not fix immediately; carry this into the feedback queue.
