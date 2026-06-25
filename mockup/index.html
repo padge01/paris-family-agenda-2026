@@ -12,7 +12,7 @@
 <body>
 <header class="hero wrap">
   <div class="topbar"><div><h1>Paris with Patrick</h1><p class="lede">Pick the Paris experiences that sound best. We’ll use everyone’s choices to decide Monday afternoon and Tuesday.</p></div><span class="pill">June 29 – July 1</span></div>
-  <div class="hero-pills"><span class="pill">Monday: Beauvais airport bus to Porte Maillot, then Paris before 3:00pm check-in</span><span class="pill">Tuesday: main Paris day</span><span class="pill">Wednesday: 06:10 G7 taxi to Porte Maillot, 07:00 Aerobus to BVA</span></div>
+  <div class="hero-pills"><span class="pill">Monday: Beauvais airport bus to Porte Maillot, 11:00 bag drop at Airbnb, then Paris before 3:00pm check-in</span><span class="pill">Tuesday: main Paris day</span><span class="pill">Wednesday: 06:10 G7 taxi to Porte Maillot, 07:00 Aerobus to BVA</span></div>
 </header>
 <main class="wrap board">
   <section class="map-card" aria-label="Paris map">
@@ -20,18 +20,19 @@
     <div id="map" class="map"></div>
     <div class="legend">
       <div class="legend-item"><i class="dot" style="background:var(--blue)"></i><div><b>Transit</b><span>Porte Maillot airport bus, nearby stations, and Wednesday taxi route.</span></div></div>
-      <div class="legend-item"><i class="dot" style="background:var(--green)"></i><div><b>Apartment / base</b><span>36 Rue du Faubourg Saint‑Martin, check‑in from 3pm.</span></div></div>
+      <div class="legend-item"><i class="dot" style="background:var(--green)"></i><div><b>Apartment / base</b><span>36 Rue du Faubourg Saint‑Martin, 11:00 bag drop, check‑in from 3pm.</span></div></div>
       <div class="legend-item"><i class="dot" style="background:var(--red)"></i><div><b>Catholic / old Paris</b><span>Saint‑Nicolas, Notre‑Dame, Rue du Bac, etc.</span></div></div>
       <div class="legend-item"><i class="dot" style="background:var(--gold)"></i><div><b>Coffee & pastry</b><span>Linked café/bakery choices near the route.</span></div></div>
       <div class="legend-item"><i class="dot" style="background:var(--purple)"></i><div><b>Shopping</b><span>Le Bon Marché, Rue Saint‑Honoré, Vendôme, Montaigne.</span></div></div>
       <div class="legend-item"><i class="dot" style="background:var(--ink)"></i><div><b>Classic photos</b><span>Arc, Trocadéro, Eiffel view, Tuileries.</span></div></div>
     </div>
     <div class="route-key"><span><i style="color:var(--red)"></i>Monday idea</span><span><i style="color:var(--purple)"></i>Tuesday idea</span><span><i style="color:var(--blue)"></i>Wednesday taxi</span></div>
-    <div class="mini-note">Monday can start from Porte Maillot instead of detouring to the apartment. Tuesday can start from the apartment, then finish with dinner. Wednesday is fixed: 06:10 G7 taxi with baby seat to Porte Maillot, then 07:00 Aerobus to BVA.</div>
+    <div class="mini-note">Monday includes an 11:00 bag drop at the Airbnb, then Paris before 3:00pm check-in. Tuesday can start from the apartment, then finish with dinner. Wednesday is fixed: 06:10 G7 taxi with baby seat to Porte Maillot, then 07:00 Aerobus to BVA.</div>
     <div class="logistics" aria-label="Fixed trip logistics">
       <h3>Fixed logistics</h3>
       <div class="logi-list">
         <div class="logi"><time>Mon 09:15</time><span>Aerobus from Paris-Beauvais Airport to Porte Maillot, arriving 10:30.</span></div>
+        <div class="logi"><time>Mon 11:00</time><span>Bag drop at the Airbnb: 36 Rue du Faubourg Saint‑Martin.</span></div>
         <div class="logi"><time>Wed 06:10</time><span>G7 taxi with baby seat from the apartment to Porte Maillot.</span></div>
         <div class="logi"><time>Wed 07:00</time><span>Aerobus from Porte Maillot to Paris-Beauvais Airport, arriving 08:15 for the 10:15 flight.</span></div>
       </div>
@@ -39,7 +40,7 @@
   </section>
   <section class="choices" aria-label="This or that choices">
     <div class="choice-panel check">
-      <b>Fixed logistics:</b> Monday starts after the 09:15 Beauvais bus to Porte Maillot. Wednesday starts with a 06:10 G7 taxi with baby seat to Porte Maillot, then the 07:00 Aerobus back to BVA.
+      <b>Fixed logistics:</b> Monday starts after the 09:15 Beauvais bus to Porte Maillot, with an 11:00 bag drop at the Airbnb. Wednesday starts with a 06:10 G7 taxi with baby seat to Porte Maillot, then the 07:00 Aerobus back to BVA.
     </div>
     <div class="choice-panel experiences">
       <h2>Experiences</h2>
@@ -122,7 +123,7 @@ const state={experiences:[],monday:'',morning:'',later:'',food:[]};
 const colors={transit:'#27536b',base:'#466d55',catholic:'#b94d40',food:'#b9862e',shopping:'#74528d',sight:'#20252a',optional:'#7b7f83'};
 const points=[
 {name:'Porte Maillot airport bus',lat:48.8774,lng:2.2823,type:'transit',html:'<b>Porte Maillot</b><br>A01 Aerobus station for Beauvais. Monday arrives here at 10:30. Wednesday taxi aims here around 06:40–06:45 for the 07:00 bus. <a href="https://www.google.com/maps/search/?api=1&query=22-24+Boulevard+Pershing+75017+Paris" target="_blank">Map</a>'},
-{name:'Apartment',lat:48.8701,lng:2.3572,type:'base',html:'<b>Apartment / 10th</b><br>36 Rue du Faubourg Saint‑Martin. Check‑in packet says standard arrival is 3:00pm. Wednesday: 06:10 G7 taxi with baby seat to Porte Maillot.'},
+{name:'Apartment',lat:48.8701,lng:2.3572,type:'base',html:'<b>Apartment / 10th</b><br>36 Rue du Faubourg Saint‑Martin. Bag drop at 11:00; standard check‑in is 3:00pm. Wednesday: 06:10 G7 taxi with baby seat to Porte Maillot.'},
 {name:'Château d’Eau metro',lat:48.8725,lng:2.3561,type:'transit',html:'<b>Château d’Eau</b><br>Closest metro station listed in the apartment packet.'},
 {name:'Gare de l’Est',lat:48.8767,lng:2.3591,type:'transit',html:'<b>Gare de l’Est</b><br>Nearby major station / landmark by the apartment.'},
 {name:'Mamiche',lat:48.8705667,lng:2.3596696,type:'food',html:'<b>Mamiche</b><br>Bakery about 240m from the apartment. <a href="https://www.mamiche.fr/" target="_blank">Website</a>'},
@@ -154,7 +155,7 @@ function initMap(){
  map=L.map('map',{scrollWheelZoom:false}).setView([48.8625,2.3265],13);
  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
  points.forEach(p=>{const color=colors[p.type];const icon=L.divIcon({className:'',html:`<div title="${p.name}" style="width:18px;height:18px;border-radius:50%;background:${color};border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,.35)"></div>`,iconSize:[18,18],iconAnchor:[9,9]});L.marker([p.lat,p.lng],{icon}).bindPopup(p.html).addTo(map);});
- L.polyline([[48.8774,2.2823],[48.8493,2.3496],[48.8530,2.3499],[48.8701,2.3572]],{color:colors.red,weight:3,opacity:.55,dashArray:'6 8'}).addTo(map).bindPopup('Possible Monday old Catholic Paris path: Porte Maillot → Saint‑Nicolas / Notre‑Dame → apartment.');
+ L.polyline([[48.8774,2.2823],[48.8701,2.3572],[48.8493,2.3496],[48.8530,2.3499]],{color:colors.red,weight:3,opacity:.55,dashArray:'6 8'}).addTo(map).bindPopup('Possible Monday path: Porte Maillot → 11:00 Airbnb bag drop → Saint‑Nicolas / Notre‑Dame.');
  L.polyline([[48.8701,2.3572],[48.8509,2.3249],[48.8541,2.3328],[48.8676,2.3294],[48.8738,2.2950]],{color:colors.purple,weight:3,opacity:.55,dashArray:'6 8'}).addTo(map).bindPopup('Possible Tuesday route: apartment → Rue du Bac / Saint‑Germain → shopping / Arc.');
  L.polyline([[48.8701,2.3572],[48.8774,2.2823]],{color:colors.transit,weight:4,opacity:.7,dashArray:'2 8'}).addTo(map).bindPopup('Fixed Wednesday logistics: 06:10 G7 taxi with baby seat from apartment → Porte Maillot, then 07:00 Aerobus to BVA.');
 }
