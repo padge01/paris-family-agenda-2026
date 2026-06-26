@@ -468,13 +468,12 @@ h3{font-size:18px}
   </section>
 
   <section class="wrap section response-panel" aria-labelledby="response-heading">
-    <h2 id="response-heading">Response</h2>
-    <p>Review the checked items, add your name, then send. Blank items are fine.</p>
+    <h2 id="response-heading">Send your response</h2>
+    <p>This is only for the choices above. Add your name, optional note, then send. Blank items are fine.</p>
     <div class="response-grid">
       <div class="form-panel">
         <label class="field"><b>Name</b><input id="submit-name" type="text" autocomplete="name" placeholder="Name" /></label>
-        <label class="field"><b>Monday / arrival notes (optional)</b><textarea id="monday-notes" rows="3" placeholder="Only if there is anything about Monday, bag drop, or check-in"></textarea></label>
-        <label class="field"><b>Other notes</b><textarea id="other-notes" rows="3" placeholder="Anything else"></textarea></label>
+        <label class="field"><b>Optional note</b><textarea id="other-notes" rows="4" placeholder="Anything else we should know"></textarea></label>
         <div class="button-row">
           <button class="btn primary" type="button" id="send-button">Send</button>
           <button class="btn" type="button" id="clear-button">Clear</button>
@@ -718,9 +717,9 @@ function payload(){
     appealing:listText(state.good),
     skipped:listText(state.skip),
     food:listText(state.food),
-    mondayNotes:document.getElementById('monday-notes').value.trim(),
+    mondayNotes:'',
     otherNotes:document.getElementById('other-notes').value.trim(),
-    version:'details-clear-submit',
+    version:'share-ready-response',
     general:listText(state.general)
   };
 }
@@ -765,7 +764,6 @@ function clearAll(){
   state.food.clear();
   state.general.clear();
   document.getElementById('submit-name').value='';
-  document.getElementById('monday-notes').value='';
   document.getElementById('other-notes').value='';
   renderSelections();
 }
