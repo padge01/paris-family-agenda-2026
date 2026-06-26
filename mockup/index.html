@@ -6,187 +6,696 @@
 <title>Paris with Patrick</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
-:root{--bg:#fff7ea;--paper:#fffdf8;--ink:#20252a;--muted:#61707a;--line:#e6d5bf;--red:#b94d40;--blue:#27536b;--gold:#b9862e;--green:#466d55;--purple:#74528d;--gray:#7b7f83;--shadow:0 18px 45px rgba(55,39,20,.12);--r:22px;--max:1240px}*{box-sizing:border-box}html,body{margin:0;overflow-x:hidden;width:100%}body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#fffaf1,var(--bg));color:var(--ink);line-height:1.42}a{color:var(--blue);font-weight:850;text-underline-offset:3px}.wrap{max-width:var(--max);margin:auto;padding:18px;width:100%}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:950;color:var(--red)}h1,h2,h3{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.035em;margin:0}h1{font-size:clamp(42px,7vw,78px);line-height:.92;margin:8px 0 12px}h2{font-size:clamp(29px,4.6vw,45px);line-height:1.14}h3{font-size:24px;line-height:1.05}.lede{font-size:clamp(17px,2.1vw,22px);color:#435058;max-width:850px;margin:0}.hero{padding:26px 0 10px}.topbar{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 10px;font-size:13px;font-weight:850;color:#47545b}.hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.board{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);gap:18px;align-items:start;margin-top:16px}.map-card{order:1}.choices{order:2}.map-card,.choices{min-width:0}.map-card{background:var(--paper);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);overflow:hidden;position:sticky;top:12px}.map-head{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:center}.map-head h2{font-size:28px}.map-head span{color:var(--muted);font-size:14px}.map{height:620px;background:#e9e0d2}.legend{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:12px;background:#fffaf2;border-top:1px solid var(--line)}.legend-item{border:1px solid var(--line);border-radius:15px;padding:9px;background:white;display:grid;grid-template-columns:18px 1fr;gap:8px;align-items:start}.dot{width:14px;height:14px;border-radius:50%;margin-top:3px;box-shadow:0 0 0 3px white,0 1px 5px rgba(0,0,0,.25)}.legend-item b{display:block;font-size:14px}.legend-item span{display:block;font-size:12.5px;color:var(--muted);margin-top:1px}.mini-note{padding:12px 14px;background:#fff6df;border-top:1px solid #e8d2a3;color:#5c4512;font-size:14px}.choices{display:grid;gap:12px}.choice-panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:18px;min-width:0;max-width:100%;overflow:visible}.choice-panel h2{font-size:30px;line-height:1.18;margin:0 0 14px}.experiences{border-color:#d7c2a8;background:#fffdfa}.prompt{color:var(--muted);margin:5px 0 12px}.duo,.trio{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-width:0;max-width:100%}.trio{grid-template-columns:minmax(0,1fr);gap:12px}.card{border:1px solid var(--line);background:#fffaf3;border-radius:16px;padding:12px 13px;text-align:left;min-height:0;cursor:pointer;transition:.15s ease;display:flex;flex-direction:column;gap:7px;min-width:0;max-width:100%;overflow-wrap:anywhere}.card:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(55,39,20,.08)}.card.selected{border-color:var(--red);outline:4px solid rgba(185,77,64,.16);background:#fff5f2}.card b{font-size:17px;overflow-wrap:anywhere}.card span{color:var(--muted);font-size:14px;overflow-wrap:anywhere}.tagline{font-size:13px;color:#4d5a62;background:white;border:1px solid var(--line);border-radius:18px;padding:6px 8px;width:auto;max-width:100%;align-self:flex-start;overflow-wrap:anywhere;white-space:normal}.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;min-width:0;max-width:100%}.links a{font-size:13px;border:1px solid var(--line);background:white;border-radius:999px;padding:6px 8px;text-decoration:none;max-width:100%;overflow-wrap:anywhere;white-space:normal}.food-panel{background:linear-gradient(180deg,#fffdf8,#fff7ea);border-color:#dcc6a9}.food-route-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px;min-width:0}.food-route{border:1px solid var(--line);background:white;border-radius:18px;padding:13px;display:flex;flex-direction:column;gap:7px;min-width:0;overflow:hidden}.food-route small{display:inline-flex;align-self:flex-start;border:1px solid #ead8bd;background:#fff7ea;color:#755322;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:950;text-transform:uppercase;letter-spacing:.05em}.food-route b{font-size:16px}.food-route span{color:var(--muted);font-size:14px;overflow-wrap:anywhere}.food-route .links{margin-top:2px}@media(max-width:760px){.food-route-grid{grid-template-columns:1fr}}.chips{display:flex;flex-wrap:wrap;gap:8px;min-width:0;max-width:100%}.chip{border:1px solid var(--line);background:#fffaf3;border-radius:999px;padding:10px 12px;font-weight:850;cursor:pointer;max-width:100%;overflow-wrap:anywhere;white-space:normal;text-align:left}.experiences .chip{background:white}.chip.selected{background:var(--blue);color:white;border-color:var(--blue)}.summary{background:#20252a;color:white;border-radius:24px;padding:16px;box-shadow:var(--shadow)}.summary h2{font-size:31px;color:white}.summary p{color:#dae2e4}.summary-line{border-top:1px solid rgba(255,255,255,.18);padding:9px 0}.summary-line:first-of-type{border-top:0}.summary-line b{display:block;color:#fff}.summary-line span{color:#dce3e6}.btn{appearance:none;border:1px solid var(--line);background:white;border-radius:999px;min-height:44px;padding:10px 14px;font-weight:900;cursor:pointer}.btn.primary{background:var(--red);border-color:var(--red);color:white}.submit-field{display:block;margin:10px 0;color:#fff}.submit-field b{display:block;margin-bottom:5px}.submit-field input,.submit-field textarea{width:100%;border:1px solid rgba(255,255,255,.28);border-radius:14px;padding:10px 12px;font:inherit;background:#fff;color:#20252a}.submit-field textarea{resize:vertical}.submit-field input:focus,.submit-field textarea:focus{outline:3px solid rgba(255,255,255,.22)}.small{font-size:13px;color:var(--muted)}.check{background:#eef7f0;border:1px solid #c7dfce;color:#34583f;border-radius:18px;padding:12px}.warn{background:#fff3d5;border:1px solid #e2c16e;color:#5c4512;border-radius:18px;padding:12px}.logistics{padding:14px;border-top:1px solid var(--line);background:#fffdf8}.logistics h3{font-size:22px;margin-bottom:8px}.logi-list{display:grid;gap:8px}.logi{display:grid;grid-template-columns:78px minmax(0,1fr);gap:8px;border:1px solid var(--line);background:white;border-radius:16px;padding:9px}.logi time{font-weight:950;color:var(--blue)}.logi span{color:var(--muted);font-size:13px}.route-key{display:flex;flex-wrap:wrap;gap:8px;padding:0 12px 12px;background:#fffaf2}.route-key span{border:1px solid var(--line);background:white;border-radius:999px;padding:6px 9px;font-size:12.5px;color:#47545b}.route-key i{display:inline-block;width:22px;border-top:3px dashed currentColor;margin-right:6px;vertical-align:middle}.leaflet-popup-content{font-family:Inter,system-ui,sans-serif}.leaflet-popup-content b{font-size:14px}.leaflet-popup-content a{font-weight:800}@media(max-width:980px){.board{grid-template-columns:1fr}.map-card{order:1;position:relative;top:auto}.choices{order:2}.map{height:460px}.duo{grid-template-columns:1fr}.legend{grid-template-columns:1fr 1fr}}@media(max-width:600px){.wrap{padding:14px}h1{font-size:45px}.topbar{display:block}.map{height:390px}.map-head{display:block}.choice-panel{padding:16px}.choice-panel h2{font-size:clamp(25px,8vw,34px);line-height:1.22;margin-bottom:14px}.card b{font-size:clamp(18px,5.5vw,23px)}.card span{font-size:clamp(15px,4.8vw,18px)}.links a,.chip{font-size:clamp(15px,4.8vw,18px)}.card{min-height:0}.hero-pills .pill{width:100%;justify-content:center}.legend{grid-template-columns:1fr}}
+:root{
+  --bg:#f7f1e8;
+  --paper:#fffdf8;
+  --ink:#24282c;
+  --muted:#66737a;
+  --line:#ded2c1;
+  --red:#a84d42;
+  --blue:#26556b;
+  --green:#4b7059;
+  --gold:#a87926;
+  --purple:#705486;
+  --dark:#24282c;
+  --soft:#fbf7ef;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;overflow-x:hidden}
+body{
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.45;
+}
+a{color:var(--blue);font-weight:800;text-underline-offset:3px}
+button,input,textarea{font:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:18px}
+.site-head{padding-top:22px}
+.topline{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+h1,h2,h3{margin:0;letter-spacing:-.02em;line-height:1.08}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(42px,7vw,74px);font-weight:700}
+h2{font-size:clamp(25px,4vw,38px)}
+h3{font-size:18px}
+.lede{margin:8px 0 0;color:#4e5a60;font-size:clamp(17px,2vw,21px)}
+.date-chip{
+  flex:0 0 auto;
+  border:1px solid var(--line);
+  background:var(--paper);
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:850;
+  color:#4b555b;
+}
+.section{margin-top:22px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:12px}
+.section-head p{margin:0;color:var(--muted);max-width:680px}
+.map-shell{
+  border:1px solid var(--line);
+  background:var(--paper);
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 14px 36px rgba(56,43,25,.10);
+}
+.map-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 14px;
+  border-bottom:1px solid var(--line);
+  background:#fffaf2;
+}
+.map-title{font-weight:900}
+.map-title span{display:block;font-size:13px;font-weight:650;color:var(--muted);margin-top:2px}
+.map-link{white-space:nowrap}
+.map{height:560px;background:#e8dfd2;position:relative}
+.map-fallback{
+  display:none;
+  position:absolute;
+  z-index:500;
+  left:12px;
+  right:12px;
+  bottom:12px;
+  padding:10px 12px;
+  border:1px solid #d7b766;
+  background:#fff7d8;
+  color:#56410e;
+  border-radius:8px;
+  font-size:14px;
+}
+.map-fallback.show{display:block}
+.legend{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:8px;
+  padding:12px;
+  border-top:1px solid var(--line);
+  background:var(--paper);
+}
+.legend-item{
+  min-width:0;
+  display:grid;
+  grid-template-columns:16px minmax(0,1fr);
+  gap:7px;
+  align-items:start;
+  padding:8px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:white;
+}
+.dot{width:13px;height:13px;border-radius:50%;margin-top:4px;box-shadow:0 0 0 3px white,0 1px 5px rgba(0,0,0,.22)}
+.legend-item b{display:block;font-size:13px}
+.legend-item span{display:block;color:var(--muted);font-size:12px;line-height:1.3}
+.fact-grid{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:16px;
+}
+.panel{
+  border:1px solid var(--line);
+  background:var(--paper);
+  border-radius:8px;
+  padding:16px;
+}
+.fixed-list{display:grid;gap:8px;margin-top:13px}
+.fixed-row{
+  display:grid;
+  grid-template-columns:98px minmax(0,1fr);
+  gap:10px;
+  padding:9px 10px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:white;
+}
+.fixed-row time{font-weight:900;color:var(--blue)}
+.fixed-row span{color:#49555b}
+.monday-list{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:13px;
+}
+.monday-note{
+  border:1px solid var(--line);
+  background:white;
+  border-radius:8px;
+  padding:11px;
+}
+.monday-note b{display:block;margin-bottom:4px}
+.monday-note span{color:var(--muted)}
+.preference-strip{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+.chip{
+  min-height:40px;
+  border:1px solid var(--line);
+  background:white;
+  color:var(--ink);
+  border-radius:999px;
+  padding:8px 12px;
+  cursor:pointer;
+  font-weight:800;
+  max-width:100%;
+}
+.chip.selected{
+  color:white;
+  background:var(--blue);
+  border-color:var(--blue);
+}
+.group{margin-top:18px}
+.group:first-of-type{margin-top:12px}
+.group-title{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+}
+.group-title span{color:var(--muted);font-size:14px}
+.item-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.place-card{
+  min-width:0;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:white;
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+.place-card.good{border-color:var(--green);box-shadow:inset 0 0 0 2px rgba(75,112,89,.18)}
+.place-card.skip{border-color:#9c736b;box-shadow:inset 0 0 0 2px rgba(168,77,66,.14);background:#fffafa}
+.place-name{font-size:16px;font-weight:900;line-height:1.2}
+.place-desc{color:var(--muted);font-size:14px;margin:0}
+.tag-row{display:flex;flex-wrap:wrap;gap:5px}
+.tag{
+  border:1px solid #e5d7c3;
+  background:#fff8ee;
+  color:#5b4d38;
+  border-radius:999px;
+  padding:3px 7px;
+  font-size:12px;
+  font-weight:800;
+}
+.place-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:auto}
+.toggle{
+  min-height:38px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:#fbfaf7;
+  cursor:pointer;
+  font-weight:850;
+  color:#3d474c;
+}
+.toggle.good.active{background:var(--green);border-color:var(--green);color:white}
+.toggle.skip.active{background:#7c5c57;border-color:#7c5c57;color:white}
+.links{display:flex;flex-wrap:wrap;gap:7px}
+.links a{
+  border:1px solid var(--line);
+  background:#fbfaf7;
+  border-radius:999px;
+  padding:5px 8px;
+  font-size:12px;
+  text-decoration:none;
+}
+.food-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+.food-card{
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:white;
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.food-card.selected{border-color:var(--gold);box-shadow:inset 0 0 0 2px rgba(168,121,38,.22)}
+.food-area{color:var(--purple);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.05em}
+.food-card b{font-size:16px}
+.food-card p{margin:0;color:var(--muted);font-size:14px}
+.food-action{margin-top:auto}
+.response{
+  display:grid;
+  grid-template-columns:1fr .95fr;
+  gap:16px;
+}
+.form-panel{
+  border:1px solid #30383d;
+  background:var(--dark);
+  color:white;
+  border-radius:8px;
+  padding:16px;
+}
+.form-panel h2{color:white}
+.form-panel p{color:#d7dee1;margin:6px 0 12px}
+.field{display:block;margin-top:12px}
+.field b{display:block;margin-bottom:5px}
+.field input,.field textarea{
+  width:100%;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:8px;
+  padding:10px 11px;
+  color:var(--ink);
+  background:white;
+}
+.field textarea{resize:vertical}
+.button-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.btn{
+  min-height:42px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:9px 14px;
+  background:white;
+  color:var(--ink);
+  font-weight:900;
+  cursor:pointer;
+}
+.btn.primary{background:var(--red);border-color:var(--red);color:white}
+.summary-box{
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--paper);
+  padding:16px;
+}
+.summary-line{border-top:1px solid var(--line);padding:10px 0}
+.summary-line:first-of-type{border-top:0}
+.summary-line b{display:block}
+.summary-line span{display:block;color:var(--muted);margin-top:2px}
+#submitted{display:none;margin:12px 0 0;color:#fff}
+.leaflet-popup-content{font-family:Inter,system-ui,sans-serif;line-height:1.35}
+.leaflet-popup-content b{font-size:14px}
+.leaflet-popup-content a{font-weight:800}
+@media(max-width:1000px){
+  .legend{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .fact-grid,.response{grid-template-columns:1fr}
+  .item-grid,.food-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .map{height:500px}
+}
+@media(max-width:680px){
+  .wrap{padding:14px}
+  .topline{display:block}
+  .date-chip{display:inline-flex;margin-top:12px}
+  .map-toolbar{display:block}
+  .map-link{display:inline-block;margin-top:8px}
+  .map{height:390px}
+  .legend,.item-grid,.food-grid,.monday-list{grid-template-columns:1fr}
+  .fixed-row{grid-template-columns:98px minmax(0,1fr)}
+  .place-actions{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
-<header class="hero wrap">
-  <div class="topbar"><div><h1>Paris with Patrick</h1><p class="lede">Map, notes, and feedback for Monday and Tuesday.</p></div><span class="pill">June 29 – July 1</span></div>
-  <div class="hero-pills"><span class="pill">Monday: Beauvais bus, 11:00 bag drop, check-in around 4:00</span><span class="pill">Tuesday: main Paris day</span><span class="pill">Wednesday: 06:10 G7 taxi to Porte Maillot, 07:00 Aerobus to BVA</span></div>
+<header class="site-head wrap">
+  <div class="topline">
+    <div>
+      <h1>Paris with Patrick</h1>
+      <p class="lede">Map and ideas for Paris.</p>
+    </div>
+    <span class="date-chip">June 29 - July 1</span>
+  </div>
 </header>
-<main class="wrap board">
-  <section class="choices" aria-label="Paris notes and feedback">
-    <div class="choice-panel">
-      <h2>Fixed times</h2>
-      <div class="logi-list">
-        <div class="logi"><time>Mon 10:30</time><span>Arrive at Porte Maillot from Beauvais.</span></div>
-        <div class="logi"><time>Mon 11:00</time><span>Bag drop at 36 Rue du Faubourg Saint‑Martin.</span></div>
-        <div class="logi"><time>Mon 4:00</time><span>Check in at the apartment.</span></div>
-        <div class="logi"><time>Wed 06:10</time><span>G7 taxi with baby seat to Porte Maillot.</span></div>
-        <div class="logi"><time>Wed 07:00</time><span>Aerobus from Porte Maillot to Beauvais.</span></div>
+
+<main>
+  <section class="wrap section" aria-labelledby="map-heading">
+    <div class="section-head">
+      <div>
+        <h2 id="map-heading">Map</h2>
+        <p>Pins show the apartment, airport bus, churches, classic sights, shopping streets, and food stops.</p>
       </div>
     </div>
-    <div class="choice-panel">
-      <h2>Monday: before check-in</h2>
-      <p class="prompt">One light plan between bag drop and 4:00 check-in.</p>
-      <div class="trio" data-group="mondayBefore">
-        <button class="card" data-value="Canal Saint-Martin, bakery, lunch"><b>Canal Saint‑Martin, bakery, lunch</b><span>Mamiche or Du Pain et des Idées, canal walk, lunch near the apartment.</span><div class="links"><a href="https://www.mamiche.fr/" target="_blank" rel="noopener">Mamiche</a><a href="https://www.dupainetdesidees.com/" target="_blank" rel="noopener">Du Pain et des Idées</a><a href="https://www.google.com/maps/search/?api=1&query=Canal+Saint-Martin+Paris" target="_blank" rel="noopener">Canal</a></div></button>
-        <button class="card" data-value="Notre-Dame / old Paris before check-in"><b>Notre‑Dame / old Paris</b><span>Notre‑Dame, Île de la Cité, possibly Saint‑Nicolas. Check in later if needed.</span><div class="links"><a href="https://www.notredamedeparis.fr/en/visit/" target="_blank" rel="noopener">Notre‑Dame</a><a href="https://laportelatine.org/lieux/chardonnet" target="_blank" rel="noopener">Saint‑Nicolas</a></div></button>
-        <button class="card" data-value="Decide after bag drop"><b>Decide after bag drop</b><span>Get food near the apartment first, then choose whether to stay nearby or go farther.</span></button>
+    <div class="map-shell">
+      <div class="map-toolbar">
+        <div class="map-title">Paris places<span>Tap a pin for the plain label and link.</span></div>
+        <a class="map-link" href="https://www.openstreetmap.org/#map=13/48.8587/2.3337" target="_blank" rel="noopener">Open larger map</a>
       </div>
-    </div>
-    <div class="choice-panel">
-      <h2>Monday: after check-in</h2>
-      <p class="prompt">After getting into the apartment.</p>
-      <div class="trio" data-group="mondayAfter">
-        <button class="card" data-value="Easy dinner near apartment"><b>Easy dinner near apartment</b><span>Bouillon Julien or another nearby restaurant.</span><div class="links"><a href="https://www.bouillon-julien.com/" target="_blank" rel="noopener">Bouillon Julien</a><a href="https://www.google.com/maps/search/?api=1&query=36+Rue+du+Faubourg+Saint-Martin+Paris+restaurants" target="_blank" rel="noopener">Near apartment</a></div></button>
-        <button class="card" data-value="Short walk near the apartment"><b>Short walk near the apartment</b><span>Canal Saint‑Martin or the neighborhood around the apartment.</span><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Canal+Saint-Martin+Paris" target="_blank" rel="noopener">Canal</a></div></button>
-        <button class="card" data-value="Go back out if energy is good"><b>Go back out if energy is good</b><span>A short evening stop, not a full cross‑town plan.</span></button>
+      <div id="map" class="map">
+        <div id="map-fallback" class="map-fallback">Map tiles are not loading. The pins and lists below still work; the larger map link opens separately.</div>
       </div>
-    </div>
-    <div class="choice-panel">
-      <h2>Tuesday</h2>
-      <p class="prompt">Full Paris day.</p>
-      <div class="trio" data-group="tuesday">
-        <button class="card" data-value="Rue du Bac + Saint-Germain"><b>Rue du Bac + Saint‑Germain</b><span>Miraculous Medal Chapel, Saint‑Germain, cafés, Le Bon Marché.</span><div class="links"><a href="https://www.chapellenotredamedelamedaillemiraculeuse.com/langues/english/" target="_blank" rel="noopener">Rue du Bac</a><a href="https://www.lebonmarche.com/" target="_blank" rel="noopener">Le Bon Marché</a><a href="https://cafedeflore.fr/" target="_blank" rel="noopener">Café de Flore</a></div></button>
-        <button class="card" data-value="Notre-Dame + old Paris"><b>Notre‑Dame + old Paris</b><span>Notre‑Dame, Sainte‑Chapelle, Saint‑Nicolas, Île de la Cité.</span><div class="links"><a href="https://www.notredamedeparis.fr/en/visit/" target="_blank" rel="noopener">Notre‑Dame</a><a href="https://www.sainte-chapelle.fr/en/" target="_blank" rel="noopener">Sainte‑Chapelle</a><a href="https://laportelatine.org/lieux/chardonnet" target="_blank" rel="noopener">Saint‑Nicolas</a></div></button>
-        <button class="card" data-value="Shopping streets + classic photos"><b>Shopping streets + classic photos</b><span>Rue Saint‑Honoré, Vendôme, Arc de Triomphe, Trocadéro / Eiffel view.</span><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Rue+Saint-Honore+Rue+Cambon+Place+Vendome+Paris" target="_blank" rel="noopener">Shopping map</a><a href="https://www.paris-arc-de-triomphe.fr/en/" target="_blank" rel="noopener">Arc</a><a href="https://www.google.com/maps/search/?api=1&query=Trocadero+Paris" target="_blank" rel="noopener">Trocadéro</a></div></button>
-        <button class="card" data-value="Montmartre + Sacré-Cœur"><b>Montmartre + Sacré‑Cœur</b><span>Sacré‑Cœur, Montmartre streets, view over Paris.</span><div class="links"><a href="https://www.sacre-coeur-montmartre.com/en/" target="_blank" rel="noopener">Sacré‑Cœur</a><a href="https://www.google.com/maps/search/?api=1&query=Montmartre+Paris" target="_blank" rel="noopener">Montmartre map</a></div></button>
+      <div class="legend" aria-label="Map legend">
+        <div class="legend-item"><i class="dot" style="background:var(--blue)"></i><div><b>Transit</b><span>Porte Maillot and nearby stations.</span></div></div>
+        <div class="legend-item"><i class="dot" style="background:var(--green)"></i><div><b>Apartment</b><span>Bag drop and check-in.</span></div></div>
+        <div class="legend-item"><i class="dot" style="background:var(--red)"></i><div><b>Catholic</b><span>Churches and chapels.</span></div></div>
+        <div class="legend-item"><i class="dot" style="background:var(--gold)"></i><div><b>Food</b><span>Bakeries, cafés, dinner.</span></div></div>
+        <div class="legend-item"><i class="dot" style="background:var(--purple)"></i><div><b>Shopping</b><span>Streets and stores.</span></div></div>
+        <div class="legend-item"><i class="dot" style="background:var(--dark)"></i><div><b>Classic</b><span>Views, gardens, monuments.</span></div></div>
       </div>
-    </div>
-    <div class="choice-panel food-panel">
-      <h2>Cafés / pastries / food</h2>
-      <div class="chips" data-group="food">
-        <button class="chip" data-value="Bakery near apartment: Mamiche / Du Pain et des Idées">Bakery near apartment</button>
-        <button class="chip" data-value="Saint-Germain café or pastry">Saint‑Germain café / pastry</button>
-        <button class="chip" data-value="Hot chocolate near Tuileries: Angelina">Hot chocolate near Tuileries</button>
-        <button class="chip" data-value="Carette if Eiffel route">Carette if Eiffel route</button>
-        <button class="chip" data-value="Easy dinner near apartment: Bouillon Julien">Easy dinner near apartment</button>
-        <button class="chip" data-value="Decide dinner later based on where we finish">Decide dinner later</button>
-      </div>
-      <div class="food-route-grid" aria-label="Food ideas by area">
-        <div class="food-route"><small>Near apartment</small><b>Mamiche / Du Pain et des Idées</b><span>Bakery and canal area.</span><div class="links"><a href="https://www.mamiche.fr/" target="_blank" rel="noopener">Mamiche</a><a href="https://www.dupainetdesidees.com/" target="_blank" rel="noopener">Du Pain et des Idées</a><a href="https://www.google.com/maps/search/?api=1&query=Canal+Saint-Martin+Paris" target="_blank" rel="noopener">Canal</a></div></div>
-        <div class="food-route"><small>Saint‑Germain</small><b>Cafés / pastry</b><span>Café de Flore, Les Deux Magots, Maison Mulot, Coutume.</span><div class="links"><a href="https://cafedeflore.fr/" target="_blank" rel="noopener">Café de Flore</a><a href="https://lesdeuxmagots.fr/" target="_blank" rel="noopener">Les Deux Magots</a><a href="https://www.maison-mulot.com/" target="_blank" rel="noopener">Maison Mulot</a><a href="https://coutumecafe.com/" target="_blank" rel="noopener">Coutume</a></div></div>
-        <div class="food-route"><small>Tuileries</small><b>Angelina</b><span>If the day goes near Tuileries or Rue Saint‑Honoré.</span><div class="links"><a href="https://www.angelina-paris.fr/" target="_blank" rel="noopener">Angelina</a><a href="https://www.google.com/maps/search/?api=1&query=Rue+Saint-Honore+Rue+Cambon+Place+Vendome+Paris" target="_blank" rel="noopener">Shopping map</a></div></div>
-        <div class="food-route"><small>Trocadéro</small><b>Carette</b><span>If the day goes to the Eiffel view.</span><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Carette+Trocadero+Paris" target="_blank" rel="noopener">Carette</a><a href="https://www.google.com/maps/search/?api=1&query=Trocadero+Paris" target="_blank" rel="noopener">Trocadéro</a></div></div>
-        <div class="food-route"><small>Near apartment</small><b>Bouillon Julien</b><span>Simple dinner near the apartment.</span><div class="links"><a href="https://www.bouillon-julien.com/" target="_blank" rel="noopener">Bouillon Julien</a><a href="https://www.google.com/maps/search/?api=1&query=36+Rue+du+Faubourg+Saint-Martin+Paris+restaurants" target="_blank" rel="noopener">Near apartment</a></div></div>
-      </div>
-    </div>
-    <div class="choice-panel experiences">
-      <h2>Feedback</h2>
-      <div class="chips" data-group="feedback">
-        <button class="chip" data-value="Notre-Dame">Notre-Dame</button>
-        <button class="chip" data-value="Rue du Bac chapel">Rue du Bac chapel</button>
-        <button class="chip" data-value="Sainte-Chapelle">Sainte-Chapelle</button>
-        <button class="chip" data-value="Saint-Nicolas chapel">Saint-Nicolas chapel</button>
-        <button class="chip" data-value="Eiffel Tower view">Eiffel Tower view</button>
-        <button class="chip" data-value="Arc de Triomphe">Arc de Triomphe</button>
-        <button class="chip" data-value="Montmartre / Sacré-Cœur">Montmartre / Sacré-Cœur</button>
-        <button class="chip" data-value="Pretty shopping streets">Pretty shopping streets</button>
-        <button class="chip" data-value="Classic café">Classic café</button>
-        <button class="chip" data-value="Good pastries">Good pastries</button>
-        <button class="chip" data-value="Nice dinner">Nice dinner</button>
-        <button class="chip" data-value="Keep Monday light">Keep Monday light</button>
-      </div>
-    </div>
-    <div class="summary">
-      <h2>Send</h2>
-      <div class="summary-line"><b>Monday before check-in</b><span id="sum-mondayBefore">Not chosen yet</span></div>
-      <div class="summary-line"><b>Monday after check-in</b><span id="sum-mondayAfter">Not chosen yet</span></div>
-      <div class="summary-line"><b>Tuesday</b><span id="sum-tuesday">Not chosen yet</span></div>
-      <div class="summary-line"><b>Cafés / food</b><span id="sum-food">Not chosen yet</span></div>
-      <div class="summary-line"><b>Feedback</b><span id="sum-feedback">Not chosen yet</span></div>
-      <label class="submit-field"><b>Name</b><input id="submit-name" type="text" autocomplete="name" placeholder="Name" /></label>
-      <label class="submit-field"><b>Notes</b><textarea id="submit-comments" rows="3" placeholder="Optional"></textarea></label>
-      <button class="btn primary" type="button" onclick="submitPicks()">Send</button> <button class="btn" type="button" onclick="resetAll()">Clear</button>
-      <p id="submitted" style="display:none;color:#fff;margin:12px 0 0"></p>
     </div>
   </section>
-  <section class="map-card" aria-label="Paris map">
-    <div class="map-head"><div><h2>Paris at a glance</h2><span>Colored pins show the airport bus, apartment, Catholic stops, cafés, shopping, and photo sights.</span></div><a href="https://www.openstreetmap.org/#map=13/48.8587/2.3337" target="_blank" rel="noopener">Open larger map</a></div>
-    <div id="map" class="map"></div>
-    <div class="legend">
-      <div class="legend-item"><i class="dot" style="background:var(--blue)"></i><div><b>Transit</b><span>Porte Maillot airport bus, nearby stations, and Wednesday taxi route.</span></div></div>
-      <div class="legend-item"><i class="dot" style="background:var(--green)"></i><div><b>Apartment / base</b><span>36 Rue du Faubourg Saint‑Martin, 11:00 bag drop, planned check‑in around 4pm.</span></div></div>
-      <div class="legend-item"><i class="dot" style="background:var(--red)"></i><div><b>Catholic / old Paris</b><span>Saint‑Nicolas, Notre‑Dame, Rue du Bac, etc.</span></div></div>
-      <div class="legend-item"><i class="dot" style="background:var(--gold)"></i><div><b>Coffee & pastry</b><span>Linked café/bakery choices near the route.</span></div></div>
-      <div class="legend-item"><i class="dot" style="background:var(--purple)"></i><div><b>Shopping</b><span>Le Bon Marché, Rue Saint‑Honoré, Vendôme, Montaigne.</span></div></div>
-      <div class="legend-item"><i class="dot" style="background:var(--ink)"></i><div><b>Classic photos</b><span>Arc, Trocadéro, Eiffel view, Tuileries.</span></div></div>
-    </div>
-    <div class="route-key"><span><i style="color:var(--red)"></i>Monday</span><span><i style="color:var(--purple)"></i>Tuesday</span><span><i style="color:var(--blue)"></i>Wednesday taxi</span></div>
-    <div class="mini-note">Monday: bag drop at 11:00, planned check-in around 4:00. Tuesday: main Paris day. Wednesday: 06:10 taxi, 07:00 Beauvais bus.</div>
-    <div class="logistics" aria-label="Fixed trip logistics">
-      <h3>Fixed logistics</h3>
-      <div class="logi-list">
-        <div class="logi"><time>Mon 09:15</time><span>Aerobus from Paris-Beauvais Airport to Porte Maillot, arriving 10:30.</span></div>
-        <div class="logi"><time>Mon 11:00</time><span>Bag drop at the Airbnb: 36 Rue du Faubourg Saint‑Martin.</span></div>
-        <div class="logi"><time>Wed 06:10</time><span>G7 taxi with baby seat from the apartment to Porte Maillot.</span></div>
-        <div class="logi"><time>Wed 07:00</time><span>Aerobus from Porte Maillot to Paris-Beauvais Airport, arriving 08:15 for the 10:15 flight.</span></div>
+
+  <section class="wrap section fact-grid" aria-label="Fixed times and Monday">
+    <div class="panel">
+      <h2>Fixed times</h2>
+      <div class="fixed-list">
+        <div class="fixed-row"><time>Mon 10:30</time><span>Porte Maillot.</span></div>
+        <div class="fixed-row"><time>Mon 11:00</time><span>Bag drop at 36 Rue du Faubourg Saint-Martin.</span></div>
+        <div class="fixed-row"><time>Mon 4:00</time><span>Check-in around 4.</span></div>
+        <div class="fixed-row"><time>Wed 06:10</time><span>Taxi to Porte Maillot.</span></div>
+        <div class="fixed-row"><time>Wed 07:00</time><span>Bus to Beauvais.</span></div>
       </div>
+    </div>
+    <div class="panel">
+      <h2>Monday</h2>
+      <div class="monday-list">
+        <div class="monday-note"><b>11:00</b><span>Bags at the apartment.</span></div>
+        <div class="monday-note"><b>Before check-in</b><span>Apartment / Canal area, or old Paris.</span></div>
+        <div class="monday-note"><b>Around 4:00</b><span>Check-in at the apartment.</span></div>
+        <div class="monday-note"><b>After check-in</b><span>Dinner, walk, rest, or go out.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section panel" aria-labelledby="things-heading">
+    <div class="section-head">
+      <div>
+        <h2 id="things-heading">Things to consider</h2>
+        <p>Check any places you like. Mark anything to skip.</p>
+      </div>
+    </div>
+    <div class="preference-strip" data-chip-group="general">
+      <button class="chip" type="button" data-value="Churches / chapels">Churches / chapels</button>
+      <button class="chip" type="button" data-value="Cafés">Cafés</button>
+      <button class="chip" type="button" data-value="Shopping">Shopping</button>
+      <button class="chip" type="button" data-value="Photo spots">Photo spots</button>
+      <button class="chip" type="button" data-value="Gardens / walking">Gardens / walking</button>
+      <button class="chip" type="button" data-value="Ticketed things">Ticketed things</button>
+    </div>
+    <div id="place-groups"></div>
+  </section>
+
+  <section class="wrap section panel" aria-labelledby="food-heading">
+    <div class="section-head">
+      <div>
+        <h2 id="food-heading">Food / cafés</h2>
+        <p>Grouped by place first, then type.</p>
+      </div>
+    </div>
+    <div id="food-grid" class="food-grid"></div>
+  </section>
+
+  <section class="wrap section response" aria-labelledby="response-heading">
+    <div class="form-panel">
+      <h2 id="response-heading">Response</h2>
+      <p>The form sends the checked items and notes.</p>
+      <label class="field"><b>Name</b><input id="submit-name" type="text" autocomplete="name" placeholder="Name" /></label>
+      <label class="field"><b>Monday notes</b><textarea id="monday-notes" rows="3" placeholder="Anything about Monday"></textarea></label>
+      <label class="field"><b>Other notes</b><textarea id="other-notes" rows="3" placeholder="Anything else"></textarea></label>
+      <div class="button-row">
+        <button class="btn primary" type="button" id="send-button">Send</button>
+        <button class="btn" type="button" id="clear-button">Clear</button>
+      </div>
+      <p id="submitted"></p>
+    </div>
+    <div class="summary-box" aria-live="polite">
+      <div class="summary-line"><b>General interests</b><span id="sum-general">None selected</span></div>
+      <div class="summary-line"><b>Appealing items</b><span id="sum-good">None selected</span></div>
+      <div class="summary-line"><b>Skip / less interested</b><span id="sum-skip">None selected</span></div>
+      <div class="summary-line"><b>Food / cafés</b><span id="sum-food">None selected</span></div>
     </div>
   </section>
 </main>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const state={mondayBefore:'',mondayAfter:'',tuesday:'',feedback:[],food:[]};
-const colors={transit:'#27536b',base:'#466d55',catholic:'#b94d40',food:'#b9862e',shopping:'#74528d',sight:'#20252a',optional:'#7b7f83'};
-const points=[
-{name:'Porte Maillot airport bus',lat:48.8774,lng:2.2823,type:'transit',html:'<b>Porte Maillot</b><br>A01 Aerobus station for Beauvais. Monday arrives here at 10:30. Wednesday taxi aims here around 06:40–06:45 for the 07:00 bus. <a href="https://www.google.com/maps/search/?api=1&query=22-24+Boulevard+Pershing+75017+Paris" target="_blank" rel="noopener">Map</a>'},
-{name:'Apartment',lat:48.8701,lng:2.3572,type:'base',html:'<b>Apartment / 10th</b><br>36 Rue du Faubourg Saint‑Martin. Bag drop at 11:00; planned check‑in around 4:00pm. Wednesday: 06:10 G7 taxi with baby seat to Porte Maillot.'},
-{name:'Château d’Eau metro',lat:48.8725,lng:2.3561,type:'transit',html:'<b>Château d’Eau</b><br>Closest metro station listed in the apartment packet.'},
-{name:'Gare de l’Est',lat:48.8767,lng:2.3591,type:'transit',html:'<b>Gare de l’Est</b><br>Nearby major station / landmark by the apartment.'},
-{name:'Mamiche',lat:48.8705667,lng:2.3596696,type:'food',html:'<b>Mamiche</b><br>Bakery about 240m from the apartment. <a href="https://www.mamiche.fr/" target="_blank" rel="noopener">Website</a>'},
-{name:'Du Pain et des Idées',lat:48.8712472,lng:2.3629042,type:'food',html:'<b>Du Pain et des Idées</b><br>Classic bakery near Canal Saint‑Martin, about 480m from the apartment. <a href="https://www.dupainetdesidees.com/" target="_blank" rel="noopener">Website</a>'},
-{name:'Pâtisserie Liberté',lat:48.8730875,lng:2.3615562,type:'food',html:'<b>Pâtisserie Liberté</b><br>Nearby pastry backup on Rue des Vinaigriers. <a href="https://www.liberte-paris.com/pages/liberte-vinaigriers" target="_blank" rel="noopener">Website</a>'},
-{name:'Bouillon Julien',lat:48.8705409,lng:2.3532213,type:'food',html:'<b>Bouillon Julien</b><br>Easy dinner near the apartment if everyone is tired. <a href="https://www.bouillon-julien.com/" target="_blank" rel="noopener">Website</a>'},
-{name:'Saint-Nicolas-du-Chardonnet',lat:48.8493,lng:2.3496,type:'catholic',html:'<b>Saint‑Nicolas‑du‑Chardonnet</b><br>SSPX chapel near the Latin Quarter. <a href="https://laportelatine.org/lieux/chardonnet" target="_blank" rel="noopener">Official listing</a>'},
-{name:'Notre-Dame',lat:48.8530,lng:2.3499,type:'catholic',html:'<b>Notre‑Dame</b><br>Must-see Catholic / old Paris stop. <a href="https://www.notredamedeparis.fr/en/visit/" target="_blank" rel="noopener">Official visit info</a>'},
-{name:'Sainte-Chapelle',lat:48.8554,lng:2.3450,type:'catholic',html:'<b>Sainte‑Chapelle</b><br>Stained glass; worth it if timing works. <a href="https://www.sainte-chapelle.fr/en/" target="_blank" rel="noopener">Official site</a>'},
-{name:'St-Étienne-du-Mont',lat:48.8463,lng:2.3480,type:'catholic',html:'<b>St‑Étienne‑du‑Mont</b><br>Near Saint‑Nicolas; shrine of St. Geneviève.'},
-{name:'Rue du Bac chapel',lat:48.8509,lng:2.3249,type:'catholic',html:'<b>Rue du Bac chapel</b><br>Miraculous Medal Chapel, strongly recommended. <a href="https://www.chapellenotredamedelamedaillemiraculeuse.com/langues/english/" target="_blank" rel="noopener">Official site</a>'},
-{name:'Saint-Sulpice',lat:48.8510,lng:2.3346,type:'catholic',html:'<b>Saint‑Sulpice</b><br>Pairs with Rue du Bac / Saint‑Germain.'},
-{name:'Le Bon Marché',lat:48.8506,lng:2.3245,type:'shopping',html:'<b>Le Bon Marché</b><br>Pairs naturally with Rue du Bac. <a href="https://www.lebonmarche.com/" target="_blank" rel="noopener">Website</a>'},
-{name:'Café de Flore',lat:48.8541444,lng:2.3326307,type:'food',html:'<b>Café de Flore</b><br>Classic Saint‑Germain café after Rue du Bac. <a href="https://cafedeflore.fr/" target="_blank" rel="noopener">Website</a>'},
-{name:'Les Deux Magots',lat:48.854069,lng:2.3330634,type:'food',html:'<b>Les Deux Magots</b><br>Classic Saint‑Germain café after Rue du Bac. <a href="https://lesdeuxmagots.fr/" target="_blank" rel="noopener">Website</a>'},
-{name:'Coutume Café',lat:48.8516587,lng:2.3182992,type:'food',html:'<b>Coutume Café</b><br>Closer coffee stop near Rue du Bac. <a href="https://coutumecafe.com/" target="_blank" rel="noopener">Website</a>'},
-{name:'Maison Mulot',lat:48.8506,lng:2.3358,type:'food',html:'<b>Maison Mulot</b><br>Pastry near Saint‑Germain / Saint‑Sulpice. <a href="https://www.maison-mulot.com/" target="_blank" rel="noopener">Website</a>'},
-{name:'Angelina Rivoli',lat:48.8650778,lng:2.3284104,type:'food',html:'<b>Angelina / Tuileries</b><br>Classic hot chocolate and pastry if the route goes through Tuileries or the shopping side. <a href="https://www.angelina-paris.fr/" target="_blank" rel="noopener">Angelina</a>'},
-{name:'Rue Saint-Honoré / Vendôme',lat:48.8676,lng:2.3294,type:'shopping',html:'<b>Rue Saint‑Honoré / Vendôme</b><br>Luxury shopping streets, Rue Cambon, Place Vendôme.'},
-{name:'Avenue Montaigne',lat:48.8666,lng:2.3049,type:'shopping',html:'<b>Avenue Montaigne</b><br>West-side luxury shopping; pairs with Champs / Arc.'},
-{name:'Arc de Triomphe',lat:48.8738,lng:2.2950,type:'sight',html:'<b>Arc de Triomphe</b><br>Classic Paris photo route. <a href="https://www.paris-arc-de-triomphe.fr/en/" target="_blank" rel="noopener">Official site</a>'},
-{name:'Trocadéro / Eiffel view',lat:48.8629,lng:2.2876,type:'sight',html:'<b>Trocadéro</b><br>Classic Eiffel Tower view.'},
-{name:'Carette Trocadéro',lat:48.8637238,lng:2.2872368,type:'food',html:'<b>Carette Trocadéro</b><br>Café stop only if we choose the Eiffel photo route. <a href="https://www.google.com/maps/search/?api=1&query=Carette+Trocadero+Paris" target="_blank" rel="noopener">Map</a>'},
-{name:'Sacré-Cœur / Montmartre',lat:48.8867,lng:2.3431,type:'optional',html:'<b>Sacré‑Cœur / Montmartre</b><br>Hilltop basilica, neighborhood streets, and a view over Paris. <a href="https://www.sacre-coeur-montmartre.com/en/" target="_blank" rel="noopener">Official site</a>'}
-];
-let map;
-function initMap(){
- if(!window.L){document.getElementById('map').innerHTML='<div style="padding:18px">Map tiles did not load. Use the Open larger map link above.</div>';return;}
- map=L.map('map',{scrollWheelZoom:false}).setView([48.8625,2.3265],13);
- L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
- points.forEach(p=>{const color=colors[p.type];const icon=L.divIcon({className:'',html:`<div title="${p.name}" style="width:18px;height:18px;border-radius:50%;background:${color};border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,.35)"></div>`,iconSize:[18,18],iconAnchor:[9,9]});L.marker([p.lat,p.lng],{icon}).bindPopup(p.html).addTo(map);});
- L.polyline([[48.8774,2.2823],[48.8701,2.3572],[48.8493,2.3496],[48.8530,2.3499]],{color:colors.catholic,weight:3,opacity:.55,dashArray:'6 8'}).addTo(map).bindPopup('Possible Monday if everyone has energy: Porte Maillot → 11:00 Airbnb bag drop → Saint‑Nicolas / Notre‑Dame.');
- L.polyline([[48.8701,2.3572],[48.8509,2.3249],[48.8541,2.3328],[48.8676,2.3294],[48.8738,2.2950]],{color:colors.shopping,weight:3,opacity:.55,dashArray:'6 8'}).addTo(map).bindPopup('Possible Tuesday: apartment → Rue du Bac / Saint‑Germain → shopping / Arc.');
- L.polyline([[48.8701,2.3572],[48.8774,2.2823]],{color:colors.transit,weight:4,opacity:.7,dashArray:'2 8'}).addTo(map).bindPopup('Fixed Wednesday logistics: 06:10 G7 taxi with baby seat from apartment → Porte Maillot, then 07:00 Aerobus to BVA.');
-}
-function selectInGroup(group,value,el){
- if(group==='feedback'||group==='food'){
-  const i=state[group].indexOf(value); if(i>=0) state[group].splice(i,1); else state[group].push(value); el.classList.toggle('selected');
- } else {
-  state[group]=value; document.querySelectorAll(`[data-group="${group}"] .card,[data-group="${group}"] .chip`).forEach(x=>x.classList.remove('selected')); el.classList.add('selected');
- }
- render();
-}
-document.querySelectorAll('[data-group] .card,[data-group] .chip').forEach(el=>el.addEventListener('click',e=>{if(e.target.tagName==='A') return; selectInGroup(el.closest('[data-group]').dataset.group, el.dataset.value, el);}));
-function render(){['mondayBefore','mondayAfter','tuesday'].forEach(k=>document.getElementById('sum-'+k).textContent=state[k]||'Not chosen yet');['feedback','food'].forEach(k=>document.getElementById('sum-'+k).textContent=state[k].length?state[k].join('; '):'Not chosen yet');const submitted=document.getElementById('submitted');submitted.style.display='none';submitted.textContent='';}
 const FORM_ACTION='https://docs.google.com/forms/d/e/1FAIpQLSfq0Zykg84gMyZriL-7jbNHg4rue1I99Urgc4UYxNh1IQ1C6w/formResponse';
 const FORM_VIEW='https://docs.google.com/forms/d/e/1FAIpQLSfq0Zykg84gMyZriL-7jbNHg4rue1I99Urgc4UYxNh1IQ1C6w/viewform';
-const FORM_ENTRIES={name:'entry.589634198',mondayBefore:'entry.2140177701',mondayAfter:'entry.818930894',tuesday:'entry.197080074',feedback:'entry.266576756',food:'entry.1316713719',comments:'entry.363358029',version:'entry.1610189529'};
-function pickText(k){return Array.isArray(state[k])?(state[k].length?state[k].join('; '):'Not chosen yet'):(state[k]||'Not chosen yet');}
-function formPayload(){return {name:document.getElementById('submit-name').value.trim(),mondayBefore:pickText('mondayBefore'),mondayAfter:pickText('mondayAfter'),tuesday:pickText('tuesday'),feedback:pickText('feedback'),food:pickText('food'),comments:document.getElementById('submit-comments').value.trim(),version:'real-trip-windows'};}
-function fallbackFormUrl(payload){const params=new URLSearchParams();Object.entries(FORM_ENTRIES).forEach(([k,entry])=>params.set(entry,payload[k]||''));return FORM_VIEW+'?usp=pp_url&'+params.toString();}
-function submitPicks(){const msg=document.getElementById('submitted');const payload=formPayload();if(!payload.name){msg.style.display='block';msg.textContent='Please add your name.';document.getElementById('submit-name').focus();return;}const iframe=document.createElement('iframe');iframe.name='hidden-google-form-submit';iframe.style.display='none';document.body.appendChild(iframe);const form=document.createElement('form');form.method='POST';form.action=FORM_ACTION;form.target=iframe.name;form.style.display='none';Object.entries(FORM_ENTRIES).forEach(([k,entry])=>{const input=document.createElement('input');input.name=entry;input.value=payload[k]||'';form.appendChild(input);});document.body.appendChild(form);form.submit();msg.style.display='block';msg.innerHTML='Sent. Backup form: <a style="color:#fff;text-decoration:underline" target="_blank" rel="noopener" href="'+fallbackFormUrl(payload)+'">open</a>';setTimeout(()=>{form.remove();iframe.remove();},4000);}
-function resetAll(){state.mondayBefore='';state.mondayAfter='';state.tuesday='';state.feedback=[];state.food=[];document.querySelectorAll('.selected').forEach(x=>x.classList.remove('selected'));document.getElementById('submit-name').value='';document.getElementById('submit-comments').value='';render();}
-initMap();render();
+const FORM_ENTRIES={
+  name:'entry.589634198',
+  appealing:'entry.2140177701',
+  skipped:'entry.197080074',
+  food:'entry.1316713719',
+  mondayNotes:'entry.818930894',
+  otherNotes:'entry.363358029',
+  version:'entry.1610189529',
+  general:'entry.266576756'
+};
+const state={good:new Set(),skip:new Set(),food:new Set(),general:new Set()};
+const colors={transit:'#26556b',base:'#4b7059',catholic:'#a84d42',food:'#a87926',shopping:'#705486',classic:'#24282c',ticket:'#7b6b55'};
+const placeGroups=[
+  {title:'Religious / Catholic',note:'Churches and chapels',items:[
+    {name:'Saint-Nicolas-du-Chardonnet',label:'SSPX chapel',desc:'Traditional Catholic chapel in the Latin Quarter.',tags:['SSPX','church'],type:'catholic',lat:48.8493,lng:2.3496,url:'https://laportelatine.org/lieux/chardonnet'},
+    {name:'Rue du Bac Chapel',label:'Miraculous Medal',desc:'Chapel of Our Lady of the Miraculous Medal.',tags:['chapel'],type:'catholic',lat:48.8509,lng:2.3249,url:'https://www.chapellenotredamedelamedaillemiraculeuse.com/langues/english/'},
+    {name:'Notre-Dame',label:'cathedral',desc:'The main Paris cathedral on the island in the Seine.',tags:['cathedral'],type:'catholic',lat:48.8530,lng:2.3499,url:'https://www.notredamedeparis.fr/en/visit/'},
+    {name:'Sainte-Chapelle',label:'stained glass',desc:'Small royal chapel famous for stained glass. Ticketed.',tags:['ticketed','chapel'],type:'catholic',lat:48.8554,lng:2.3450,url:'https://www.sainte-chapelle.fr/en/'},
+    {name:'Saint-Sulpice',label:'large Left Bank church',desc:'Large church near Saint-Germain and Luxembourg Gardens.',tags:['church'],type:'catholic',lat:48.8510,lng:2.3346},
+    {name:'Saint-Étienne-du-Mont',label:'St. Genevieve',desc:'Church near the Pantheon with the shrine of St. Genevieve.',tags:['church'],type:'catholic',lat:48.8463,lng:2.3480},
+    {name:'Sacré-Cœur',label:'hilltop basilica',desc:'White basilica above Montmartre with a wide city view.',tags:['church','view'],type:'catholic',lat:48.8867,lng:2.3431,url:'https://www.sacre-coeur-montmartre.com/en/'},
+    {name:'Saint-Germain-des-Prés',label:'old abbey church',desc:'Old church in the Saint-Germain café and shopping area.',tags:['church'],type:'catholic',lat:48.8539,lng:2.3344}
+  ]},
+  {title:'Classic Paris',note:'Views, monuments, gardens',items:[
+    {name:'Trocadéro / Eiffel view',label:'Eiffel photos',desc:'Open terrace facing the Eiffel Tower.',tags:['photo'],type:'classic',lat:48.8629,lng:2.2876},
+    {name:'Arc de Triomphe',label:'monument',desc:'Big arch at the top of the Champs-Élysées.',tags:['photo'],type:'classic',lat:48.8738,lng:2.2950,url:'https://www.paris-arc-de-triomphe.fr/en/'},
+    {name:'Tuileries',label:'garden',desc:'Formal garden between the Louvre and Place de la Concorde.',tags:['garden'],type:'classic',lat:48.8635,lng:2.3270},
+    {name:'Louvre exterior / pyramid',label:'outside only',desc:'Courtyard and glass pyramid outside the Louvre museum.',tags:['photo'],type:'classic',lat:48.8606,lng:2.3376},
+    {name:'Seine / bridges',label:'river views',desc:'River walk and bridge views around the islands.',tags:['walk','photo'],type:'classic',lat:48.8566,lng:2.3430},
+    {name:'Luxembourg Gardens',label:'garden',desc:'Large Left Bank garden near Saint-Sulpice.',tags:['garden'],type:'classic',lat:48.8462,lng:2.3372},
+    {name:'Opéra Garnier',label:'opera house',desc:'Grand opera house near department stores and shopping streets.',tags:['building'],type:'classic',lat:48.8719,lng:2.3316,url:'https://www.operadeparis.fr/en/visits/palais-garnier'},
+    {name:'Place Vendôme',label:'square',desc:'Formal square with jewelry shops and the Ritz.',tags:['shopping','photo'],type:'classic',lat:48.8675,lng:2.3295}
+  ]},
+  {title:'Extra / ticketed',note:'Items that may need booking or extra travel',items:[
+    {name:'Catacombs',label:'underground ossuary',desc:'Underground tunnels lined with bones. Ticketed; south of center.',tags:['ticketed','farther'],type:'ticket',lat:48.8338,lng:2.3324,url:'https://www.catacombes.paris.fr/en'},
+    {name:'Arc climb',label:'ticketed viewpoint',desc:'Stairs up the Arc de Triomphe for a city view. Ticketed.',tags:['ticketed','view'],type:'ticket',lat:48.8738,lng:2.2950,url:'https://www.paris-arc-de-triomphe.fr/en/'},
+    {name:'Opéra Garnier visit',label:'inside visit',desc:'Ticketed visit inside the opera house.',tags:['ticketed'],type:'ticket',lat:48.8719,lng:2.3316,url:'https://www.operadeparis.fr/en/visits/palais-garnier'}
+  ]},
+  {title:'Shopping / streets',note:'Stores and browsing streets',items:[
+    {name:'Saint-Germain',label:'Left Bank streets',desc:'Cafés, shops, churches, and side streets on the Left Bank.',tags:['cafés','shops'],type:'shopping',lat:48.8540,lng:2.3330},
+    {name:'Le Bon Marché',label:'department store',desc:'Classic Left Bank department store near Rue du Bac.',tags:['shopping'],type:'shopping',lat:48.8506,lng:2.3245,url:'https://www.lebonmarche.com/'},
+    {name:'Rue Saint-Honoré / Vendôme',label:'luxury shopping',desc:'Designer streets around Rue Saint-Honoré and Place Vendôme.',tags:['shopping'],type:'shopping',lat:48.8676,lng:2.3294},
+    {name:'Avenue Montaigne',label:'designer avenue',desc:'High-end shopping avenue near the Champs-Élysées.',tags:['shopping'],type:'shopping',lat:48.8666,lng:2.3049}
+  ]}
+];
+const foodItems=[
+  {area:'Near apartment',name:'Mamiche',kind:'bakery',desc:'Bakery near 36 Rue du Faubourg Saint-Martin.',lat:48.8706,lng:2.3597,url:'https://www.mamiche.fr/'},
+  {area:'Near apartment / Canal',name:'Du Pain et des Idées',kind:'bakery',desc:'Bakery near Canal Saint-Martin.',lat:48.8712,lng:2.3629,url:'https://www.dupainetdesidees.com/'},
+  {area:'Near apartment',name:'Pâtisserie Liberté',kind:'pastry backup',desc:'Nearby pastry option on Rue des Vinaigriers.',lat:48.8731,lng:2.3616,url:'https://www.liberte-paris.com/pages/liberte-vinaigriers'},
+  {area:'Near apartment',name:'Bouillon Julien',kind:'dinner',desc:'Dinner option near the apartment.',lat:48.8705,lng:2.3532,url:'https://www.bouillon-julien.com/'},
+  {area:'Saint-Germain',name:'Café de Flore',kind:'classic café',desc:'Classic café on Boulevard Saint-Germain.',lat:48.8541,lng:2.3326,url:'https://cafedeflore.fr/'},
+  {area:'Saint-Germain',name:'Les Deux Magots',kind:'classic café',desc:'Classic café across from Saint-Germain-des-Pres.',lat:48.8541,lng:2.3331,url:'https://lesdeuxmagots.fr/'},
+  {area:'Saint-Germain',name:'Maison Mulot',kind:'pastry',desc:'Pastry near Saint-Sulpice.',lat:48.8506,lng:2.3358,url:'https://www.maison-mulot.com/'},
+  {area:'Rue du Bac',name:'Coutume',kind:'coffee',desc:'Coffee near Rue du Bac.',lat:48.8517,lng:2.3183,url:'https://coutumecafe.com/'},
+  {area:'Tuileries / Rivoli',name:'Angelina',kind:'hot chocolate',desc:'Hot chocolate and pastry near Tuileries.',lat:48.8651,lng:2.3284,url:'https://www.angelina-paris.fr/'},
+  {area:'Trocadero',name:'Carette',kind:'café',desc:'Café near the Eiffel Tower view.',lat:48.8637,lng:2.2872,url:'https://www.google.com/maps/search/?api=1&query=Carette+Trocadero+Paris'}
+];
+const fixedPoints=[
+  {name:'Porte Maillot',label:'airport bus',desc:'Beauvais bus stop.',lat:48.8774,lng:2.2823,type:'transit',url:'https://www.google.com/maps/search/?api=1&query=22-24+Boulevard+Pershing+75017+Paris'},
+  {name:'Apartment',label:'36 Rue du Faubourg Saint-Martin',desc:'Bag drop at 11:00; check-in around 4.',lat:48.8701,lng:2.3572,type:'base'},
+  {name:"Château d'Eau",label:'metro',desc:'Metro station near the apartment.',lat:48.8725,lng:2.3561,type:'transit'},
+  {name:"Gare de l'Est",label:'station',desc:'Major station near the apartment.',lat:48.8767,lng:2.3591,type:'transit'}
+];
+function allPlaces(){
+  return [...fixedPoints,...placeGroups.flatMap(group=>group.items),...foodItems.map(item=>({...item,label:item.kind,type:'food'}))];
+}
+function externalLink(url,label){
+  return url?`<a href="${url}" target="_blank" rel="noopener">${label}</a>`:'';
+}
+function escapeHtml(text){
+  return String(text).replace(/[&<>"']/g, char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+function placeValue(item){
+  return `${item.name} (${item.label})`;
+}
+function foodValue(item){
+  return `${item.area}: ${item.name} (${item.kind})`;
+}
+function renderPlaceGroups(){
+  const container=document.getElementById('place-groups');
+  container.innerHTML=placeGroups.map((group,groupIndex)=>`
+    <div class="group">
+      <div class="group-title"><h3>${escapeHtml(group.title)}</h3><span>${escapeHtml(group.note)}</span></div>
+      <div class="item-grid">
+        ${group.items.map((item,itemIndex)=>{
+          const value=escapeHtml(placeValue(item));
+          return `<article class="place-card" data-place="${value}">
+            <div class="place-name">${escapeHtml(item.name)} <span style="color:var(--muted);font-weight:750">- ${escapeHtml(item.label)}</span></div>
+            <p class="place-desc">${escapeHtml(item.desc)}</p>
+            <div class="tag-row">${item.tags.map(tag=>`<span class="tag">${escapeHtml(tag)}</span>`).join('')}</div>
+            <div class="links">${externalLink(item.url,'Link')}${externalLink(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name+' Paris')}`,'Map')}</div>
+            <div class="place-actions">
+              <button class="toggle good" type="button" data-action="good" data-group-index="${groupIndex}" data-item-index="${itemIndex}">Interested</button>
+              <button class="toggle skip" type="button" data-action="skip" data-group-index="${groupIndex}" data-item-index="${itemIndex}">Skip</button>
+            </div>
+          </article>`;
+        }).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+function renderFood(){
+  document.getElementById('food-grid').innerHTML=foodItems.map((item,index)=>`
+    <article class="food-card" data-food="${escapeHtml(foodValue(item))}">
+      <div class="food-area">${escapeHtml(item.area)}</div>
+      <b>${escapeHtml(item.name)}</b>
+      <p>${escapeHtml(item.desc)}</p>
+      <div class="links">${externalLink(item.url,'Link')}${externalLink(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name+' Paris')}`,'Map')}</div>
+      <button class="btn food-action" type="button" data-food-index="${index}">Interested</button>
+    </article>
+  `).join('');
+}
+function togglePlace(item,action){
+  const value=placeValue(item);
+  if(action==='good'){
+    if(state.good.has(value)){state.good.delete(value)} else {state.good.add(value);state.skip.delete(value)}
+  } else {
+    if(state.skip.has(value)){state.skip.delete(value)} else {state.skip.add(value);state.good.delete(value)}
+  }
+  renderSelections();
+}
+function toggleSet(set,value){
+  if(set.has(value)) set.delete(value); else set.add(value);
+}
+function listText(set){
+  return set.size?[...set].join('; '):'None selected';
+}
+function renderSelections(){
+  document.querySelectorAll('.place-card').forEach(card=>{
+    const value=card.dataset.place;
+    const good=state.good.has(value);
+    const skip=state.skip.has(value);
+    card.classList.toggle('good',good);
+    card.classList.toggle('skip',skip);
+    card.querySelector('[data-action="good"]').classList.toggle('active',good);
+    card.querySelector('[data-action="skip"]').classList.toggle('active',skip);
+  });
+  document.querySelectorAll('.food-card').forEach(card=>{
+    const selected=state.food.has(card.dataset.food);
+    card.classList.toggle('selected',selected);
+    card.querySelector('.food-action').classList.toggle('primary',selected);
+    card.querySelector('.food-action').textContent=selected?'Selected':'Interested';
+  });
+  document.querySelectorAll('[data-chip-group="general"] .chip').forEach(chip=>{
+    chip.classList.toggle('selected',state.general.has(chip.dataset.value));
+  });
+  document.getElementById('sum-general').textContent=listText(state.general);
+  document.getElementById('sum-good').textContent=listText(state.good);
+  document.getElementById('sum-skip').textContent=listText(state.skip);
+  document.getElementById('sum-food').textContent=listText(state.food);
+  const submitted=document.getElementById('submitted');
+  submitted.style.display='none';
+  submitted.textContent='';
+}
+function initSelectionEvents(){
+  document.getElementById('place-groups').addEventListener('click',event=>{
+    const button=event.target.closest('button[data-action]');
+    if(!button) return;
+    const item=placeGroups[Number(button.dataset.groupIndex)].items[Number(button.dataset.itemIndex)];
+    togglePlace(item,button.dataset.action);
+  });
+  document.getElementById('food-grid').addEventListener('click',event=>{
+    const button=event.target.closest('button[data-food-index]');
+    if(!button) return;
+    const item=foodItems[Number(button.dataset.foodIndex)];
+    toggleSet(state.food,foodValue(item));
+    renderSelections();
+  });
+  document.querySelector('[data-chip-group="general"]').addEventListener('click',event=>{
+    const chip=event.target.closest('.chip');
+    if(!chip) return;
+    toggleSet(state.general,chip.dataset.value);
+    renderSelections();
+  });
+}
+function showMapFallback(){
+  const fallback=document.getElementById('map-fallback');
+  if(fallback) fallback.classList.add('show');
+}
+function initMap(){
+  if(!window.L){
+    showMapFallback();
+    return;
+  }
+  const map=L.map('map',{scrollWheelZoom:false}).setView([48.8588,2.3345],13);
+  const tiles=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'});
+  tiles.on('tileerror',showMapFallback);
+  tiles.addTo(map);
+  allPlaces().forEach(point=>{
+    const color=colors[point.type]||colors.classic;
+    const safeName=escapeHtml(point.name);
+    const icon=L.divIcon({
+      className:'',
+      html:`<div title="${safeName}" style="width:18px;height:18px;border-radius:50%;background:${color};border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,.35)"></div>`,
+      iconSize:[18,18],
+      iconAnchor:[9,9]
+    });
+    const popup=`<b>${safeName}</b><br>${escapeHtml(point.label||'')}${point.label?'<br>':''}${escapeHtml(point.desc||'')}${point.url?'<br>'+externalLink(point.url,'Link'):''}`;
+    L.marker([point.lat,point.lng],{icon}).bindPopup(popup).addTo(map);
+  });
+}
+function payload(){
+  return {
+    name:document.getElementById('submit-name').value.trim(),
+    appealing:listText(state.good),
+    skipped:listText(state.skip),
+    food:listText(state.food),
+    mondayNotes:document.getElementById('monday-notes').value.trim(),
+    otherNotes:document.getElementById('other-notes').value.trim(),
+    version:'broad-menu-preferences',
+    general:listText(state.general)
+  };
+}
+function fallbackFormUrl(data){
+  const params=new URLSearchParams();
+  Object.entries(FORM_ENTRIES).forEach(([key,entry])=>params.set(entry,data[key]||''));
+  return `${FORM_VIEW}?usp=pp_url&${params.toString()}`;
+}
+function submitPicks(){
+  const message=document.getElementById('submitted');
+  const data=payload();
+  if(!data.name){
+    message.style.display='block';
+    message.textContent='Please add your name.';
+    document.getElementById('submit-name').focus();
+    return;
+  }
+  const iframe=document.createElement('iframe');
+  iframe.name='hidden-google-form-submit';
+  iframe.style.display='none';
+  document.body.appendChild(iframe);
+  const form=document.createElement('form');
+  form.method='POST';
+  form.action=FORM_ACTION;
+  form.target=iframe.name;
+  form.style.display='none';
+  Object.entries(FORM_ENTRIES).forEach(([key,entry])=>{
+    const input=document.createElement('input');
+    input.name=entry;
+    input.value=data[key]||'';
+    form.appendChild(input);
+  });
+  document.body.appendChild(form);
+  form.submit();
+  message.style.display='block';
+  message.innerHTML=`Sent. Backup form: <a style="color:#fff;text-decoration:underline" target="_blank" rel="noopener" href="${fallbackFormUrl(data)}">open</a>`;
+  setTimeout(()=>{form.remove();iframe.remove();},4000);
+}
+function clearAll(){
+  state.good.clear();
+  state.skip.clear();
+  state.food.clear();
+  state.general.clear();
+  document.getElementById('submit-name').value='';
+  document.getElementById('monday-notes').value='';
+  document.getElementById('other-notes').value='';
+  renderSelections();
+}
+renderPlaceGroups();
+renderFood();
+initSelectionEvents();
+document.getElementById('send-button').addEventListener('click',submitPicks);
+document.getElementById('clear-button').addEventListener('click',clearAll);
+initMap();
+renderSelections();
 </script>
 </body>
 </html>
