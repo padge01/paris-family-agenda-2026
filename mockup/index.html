@@ -103,6 +103,16 @@ h3{font-size:18px}
 .section{margin-top:22px}
 .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:12px}
 .section-head p{margin:0;color:var(--muted);max-width:680px}
+.how-panel{
+  border:1px solid var(--line);
+  background:var(--paper);
+  border-radius:8px;
+  padding:13px 14px;
+  box-shadow:var(--shadow);
+}
+.how-panel b{display:block;margin-bottom:4px}
+.how-panel p{margin:0;color:var(--muted)}
+.how-panel strong{color:var(--ink)}
 .map-shell{
   border:1px solid var(--line);
   background:var(--paper);
@@ -247,6 +257,7 @@ h3{font-size:18px}
 .place-card.good{border-color:var(--green);box-shadow:inset 0 0 0 2px rgba(75,112,89,.18)}
 .place-card.skip{border-color:#9c736b;box-shadow:inset 0 0 0 2px rgba(168,77,66,.14);background:color-mix(in srgb, var(--red) 8%, var(--card))}
 .place-name{font-size:16px;font-weight:900;line-height:1.2}
+.place-name a,.food-name a{color:var(--ink);text-decoration-thickness:1px}
 .place-desc{color:var(--muted);font-size:14px;margin:0}
 .tag-row{display:flex;flex-wrap:wrap;gap:5px}
 .tag{
@@ -374,6 +385,11 @@ h3{font-size:18px}
   </div>
 </header>
 
+<section class="wrap section how-panel" aria-label="How this works">
+  <b>How this works</b>
+  <p>Click a name or <strong>Details</strong> for more information. Use <strong>Interested</strong> or <strong>Skip</strong> only where you have an opinion. Leave anything blank if you do not care. At the bottom, add your name and press <strong>Send</strong>; clicking Interested or Skip alone does not submit.</p>
+</section>
+
 <main>
   <section class="wrap section" aria-labelledby="map-heading">
     <div class="section-head">
@@ -427,7 +443,7 @@ h3{font-size:18px}
     <div class="section-head">
       <div>
         <h2 id="things-heading">Things to consider</h2>
-        <p>Check any places you like. Mark anything to skip.</p>
+        <p>Click a name for details. Mark only the places you care about; blank is fine.</p>
       </div>
     </div>
     <div class="preference-strip" data-chip-group="general">
@@ -445,7 +461,7 @@ h3{font-size:18px}
     <div class="section-head">
       <div>
         <h2 id="food-heading">Food / cafés</h2>
-        <p>Grouped by place first, then type.</p>
+        <p>Click a name for details. Mark only the food or café stops that interest you.</p>
       </div>
     </div>
     <div id="food-grid" class="food-grid"></div>
@@ -453,11 +469,11 @@ h3{font-size:18px}
 
   <section class="wrap section response-panel" aria-labelledby="response-heading">
     <h2 id="response-heading">Response</h2>
-    <p>Checked items and notes will be sent.</p>
+    <p>Review the checked items, add your name, then send. Blank items are fine.</p>
     <div class="response-grid">
       <div class="form-panel">
         <label class="field"><b>Name</b><input id="submit-name" type="text" autocomplete="name" placeholder="Name" /></label>
-        <label class="field"><b>Monday notes</b><textarea id="monday-notes" rows="3" placeholder="Anything about Monday"></textarea></label>
+        <label class="field"><b>Monday / arrival notes (optional)</b><textarea id="monday-notes" rows="3" placeholder="Only if there is anything about Monday, bag drop, or check-in"></textarea></label>
         <label class="field"><b>Other notes</b><textarea id="other-notes" rows="3" placeholder="Anything else"></textarea></label>
         <div class="button-row">
           <button class="btn primary" type="button" id="send-button">Send</button>
@@ -554,6 +570,15 @@ function allPlaces(){
 function externalLink(url,label){
   return url?`<a href="${url}" target="_blank" rel="noopener">${label}</a>`:'';
 }
+function slugify(text){
+  return String(text).toLowerCase().replace(/œ/g,'oe').replace(/æ/g,'ae').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/&/g,' and ').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+}
+function detailUrl(kind,item){
+  return `details/${kind==='food'?'food-':''}${slugify(item.name)}.html`;
+}
+function internalLink(url,label){
+  return `<a href="${url}">${label}</a>`;
+}
 function escapeHtml(text){
   return String(text).replace(/[&<>"']/g, char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 }
@@ -572,10 +597,10 @@ function renderPlaceGroups(){
         ${group.items.map((item,itemIndex)=>{
           const value=escapeHtml(placeValue(item));
           return `<article class="place-card" data-place="${value}">
-            <div class="place-name">${escapeHtml(item.name)} <span style="color:var(--muted);font-weight:750">- ${escapeHtml(item.label)}</span></div>
+            <div class="place-name"><a href="${detailUrl('place',item)}">${escapeHtml(item.name)}</a> <span style="color:var(--muted);font-weight:750">- ${escapeHtml(item.label)}</span></div>
             <p class="place-desc">${escapeHtml(item.desc)}</p>
             <div class="tag-row">${item.tags.map(tag=>`<span class="tag">${escapeHtml(tag)}</span>`).join('')}</div>
-            <div class="links">${externalLink(item.url,'Link')}${externalLink(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name+' Paris')}`,'Map')}</div>
+            <div class="links">${internalLink(detailUrl('place',item),'Details')}${externalLink(item.url,'Link')}${externalLink(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name+' Paris')}`,'Map')}</div>
             <div class="place-actions">
               <button class="toggle good" type="button" data-action="good" data-group-index="${groupIndex}" data-item-index="${itemIndex}">Interested</button>
               <button class="toggle skip" type="button" data-action="skip" data-group-index="${groupIndex}" data-item-index="${itemIndex}">Skip</button>
@@ -590,9 +615,9 @@ function renderFood(){
   document.getElementById('food-grid').innerHTML=foodItems.map((item,index)=>`
     <article class="food-card" data-food="${escapeHtml(foodValue(item))}">
       <div class="food-area">${escapeHtml(item.area)}</div>
-      <b>${escapeHtml(item.name)}</b>
+      <b class="food-name"><a href="${detailUrl('food',item)}">${escapeHtml(item.name)}</a></b>
       <p>${escapeHtml(item.desc)}</p>
-      <div class="links">${externalLink(item.url,'Link')}${externalLink(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name+' Paris')}`,'Map')}</div>
+      <div class="links">${internalLink(detailUrl('food',item),'Details')}${externalLink(item.url,'Link')}${externalLink(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name+' Paris')}`,'Map')}</div>
       <button class="btn food-action" type="button" data-food-index="${index}">Interested</button>
     </article>
   `).join('');
@@ -694,7 +719,7 @@ function payload(){
     food:listText(state.food),
     mondayNotes:document.getElementById('monday-notes').value.trim(),
     otherNotes:document.getElementById('other-notes').value.trim(),
-    version:'broad-menu-preferences',
+    version:'details-clear-submit',
     general:listText(state.general)
   };
 }
