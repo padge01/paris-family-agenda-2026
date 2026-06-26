@@ -506,6 +506,7 @@ const FORM_ENTRIES={
   general:'entry.266576756'
 };
 const state={good:new Set(),skip:new Set(),food:new Set(),general:new Set()};
+const DETAIL_VERSION='photo-details-v2';
 const themeButton=document.getElementById('theme-toggle');
 function preferredTheme(){return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
 function currentTheme(){return localStorage.getItem('paris-theme')||preferredTheme();}
@@ -574,7 +575,7 @@ function slugify(text){
   return String(text).toLowerCase().replace(/œ/g,'oe').replace(/æ/g,'ae').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/&/g,' and ').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
 }
 function detailUrl(kind,item){
-  return `details/${kind==='food'?'food-':''}${slugify(item.name)}.html`;
+  return `details/${kind==='food'?'food-':''}${slugify(item.name)}.html?v=${DETAIL_VERSION}`;
 }
 function internalLink(url,label){
   return `<a href="${url}">${label}</a>`;
